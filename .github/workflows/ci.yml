@@ -18,8 +18,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Install ansible-lint via apt
-        run: sudo apt-get update && sudo apt-get install -y ansible-lint
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install ansible-lint
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible ansible-lint
+
+      - name: Install community.general in ansible-galaxy
+        run: ansible-galaxy collection install community.general
 
       - name: Run ansible-lint
         run: ansible-lint *.yml
