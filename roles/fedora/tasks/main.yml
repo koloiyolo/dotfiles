@@ -24,4 +24,5 @@
       - uv
       - ruff
       - cargo
+      - zoxide
     state: present
