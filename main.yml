@@ -1,0 +1,40 @@
+---
+- name: Configure Fedora system
+  hosts:
+    - fedora
+  become: true
+  roles:
+    - fedora
+  ignore_unreachable: true
+
+- name: Install and confiigure Docker
+  hosts:
+    - fedora
+  roles:
+    - docker
+  ignore_unreachable: true
+
+- name: Install AstroVim
+  hosts:
+    - fedora
+  roles:
+    - astrovim
+  ignore_unreachable: true
+
+- name: Install Oh-My-Zsh
+  hosts:
+    - fedora
+  roles:
+    - ohmyzsh
+
+- name: Setup Zed
+  hosts:
+    - desktop
+  roles:
+    - zed
+
+- name: Setup Ollama
+  hosts:
+    - desktop
+  roles:
+    - ollama

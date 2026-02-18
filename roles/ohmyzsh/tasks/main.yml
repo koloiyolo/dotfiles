@@ -1,0 +1,35 @@
+---
+- name: Copy .zshrc file
+  ansible.builtin.copy:
+    src: templates/.zshrc
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: "0655"
+
+- name: Check if oh-my-zsh files exist
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/oh-my-zsh.sh"
+  register: ohmyzsh_files_exist
+
+- name: Download oh-my-zsh installer
+  when: not ohmyzsh_files_exist.stat.exists
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "{{ ansible_env.HOME }}/install.sh"
+    mode: "0755"
+
+- name: Install oh-my-zsh
+  when: not ohmyzsh_files_exist.stat.exists
+  changed_when: true
+  ansible.builtin.command:
+    cmd: "~/install.sh --unattended --keep-zshrc"
+
+- name: Remove installer
+  when: not ohmyzsh_files_exist.stat.exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/install.sh"
+    state: absent
+
+- name: Ensure Zsh is the default shell for current user
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/zsh

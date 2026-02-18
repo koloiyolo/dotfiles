@@ -1,0 +1,25 @@
+---
+- name: Download Ollama installer
+  ansible.builtin.get_url:
+    url: https://ollama.com/install.sh
+    dest: /tmp/ollama-install.sh
+    mode: "0755"
+
+- name: Install Ollama
+  ansible.builtin.command:
+    cmd: /tmp/ollama-install.sh
+  args:
+    creates: /usr/local/bin/ollama
+  register: ollama_install
+
+- name: Copy Modelfile from template
+  ansible.builtin.copy:
+    src: "templates/{{ ollama_model_name }}/Modelfile"
+    dest: /tmp/Modelfile
+    mode: "0644"
+
+- name: Create Ollama model from Modelfile
+  ansible.builtin.command:
+    cmd: "ollama create {{ ollama_model_name }} -f /tmp/Modelfile"
+  register: ollama_create
+  changed_when: "'successfully created' in ollama_create.stdout or 'created' in ollama_create.stdout"

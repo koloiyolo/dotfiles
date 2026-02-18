@@ -1,0 +1,7 @@
+---
+- name: Install AstroVim
+  ansible.builtin.git:
+    repo: https://github.com/AstroNvim/template
+    dest: ~/.config/nvim
+    depth: 1
+    version: main

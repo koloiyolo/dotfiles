@@ -1,0 +1,27 @@
+---
+- name: Ensure correct dnf file
+  ansible.builtin.copy:
+    src: templates/dnf.conf
+    dest: /etc/dnf/dnf.conf
+    mode: "0600"
+
+- name: Ensure system and packages are updated
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: true
+
+- name: Install basic packages
+  ansible.builtin.dnf:
+    name:
+      - neovim
+      - fzf
+      - zsh
+      - fastfetch
+      - git
+      - curl
+      - dnf-plugins-core
+      - uv
+      - ruff
+      - cargo
+    state: present

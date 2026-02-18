@@ -1,0 +1,37 @@
+---
+- name: Ensure Zed config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/zed"
+    state: directory
+    mode: "0755"
+
+- name: Copy settings file to Zed .config directory
+  ansible.builtin.copy:
+    src: templates/settings.json
+    dest: "{{ ansible_env.HOME }}/.config/zed/settings.json"
+    mode: "0655"
+
+- name: Download Zed installer
+  ansible.builtin.get_url:
+    url: https://zed.dev/install.sh
+    dest: /tmp/zed-install.sh
+    mode: "0755"
+
+- name: Install Zed
+  ansible.builtin.command:
+    cmd: /tmp/zed-install.sh
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/zed.app/bin/zed"
+
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Symlink Zed binary
+  ansible.builtin.file:
+    src: "{{ ansible_env.HOME }}/.local/zed.app/bin/zed"
+    dest: "{{ ansible_env.HOME }}/.local/bin/zed"
+    state: link
+    force: true
