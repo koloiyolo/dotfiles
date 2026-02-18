@@ -1,5 +1,7 @@
 # Dotfiles
 
+_NixOS at home_
+
 My typical modern development setup for Python and Rust.
 
 ## Key Tools:
@@ -12,6 +14,8 @@ My typical modern development setup for Python and Rust.
 - `nvim`: A highly configurable and extensible text editor.
 - `zed`: A lightning-fast, code editor built for modern development workflows, with seamless AI integration.
 - `ollama`: For local LLM models and tweaking.
+
+And many more Rust replacements for common Linux tools...
 
 ## Prequisites
 

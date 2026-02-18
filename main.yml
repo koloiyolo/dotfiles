@@ -7,6 +7,18 @@
     - fedora
   ignore_unreachable: true
 
+- name: Install cargo packages
+  hosts:
+    - fedora
+  roles:
+    - cargo
+
+- name: Install Fish
+  hosts:
+    - fedora
+  roles:
+    - fish
+
 - name: Install and confiigure Docker
   hosts:
     - fedora
@@ -21,12 +33,6 @@
     - astrovim
   ignore_unreachable: true
 
-- name: Install Oh-My-Zsh
-  hosts:
-    - fedora
-  roles:
-    - ohmyzsh
-
 - name: Setup Zed
   hosts:
     - desktop
@@ -38,3 +44,9 @@
     - desktop
   roles:
     - ollama
+### LEGACY ###
+# - name: Install Oh-My-Zsh -- Replaced by fish
+#   hosts:
+#     - fedora
+#   roles:
+#     - ohmyzsh

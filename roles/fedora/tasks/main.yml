@@ -25,4 +25,6 @@
       - ruff
       - cargo
       - zoxide
+      - fish
+      - ripgrep
     state: present
