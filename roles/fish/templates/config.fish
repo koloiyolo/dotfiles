@@ -9,6 +9,8 @@ set -gx PATH $HOME/.cargo/bin $PATH
 
 envsource ~/.env
 
+git_aliases
+
 ### ALIASES
 alias eza="ls"
 alias cat="bat"
