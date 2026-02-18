@@ -28,5 +28,5 @@ sudo dnf install python3 ansible
 2. Run ansible playbook:
 
 ```bash
-ansible-playbook -i inventory/laptop.ini main.yml --ask-become-pass -v
+ansible-playbook -i inventory/setup.ini main.yml --ask-become-pass -v
 ```
