@@ -1,0 +1,11 @@
+---
+- name: Install cargo packages
+  community.general.cargo:
+    name:
+      - bat
+      - eza
+      - ripgrep
+      - du-dust
+      - hyperfine
+      - bacon
+    state: present
