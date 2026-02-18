@@ -35,7 +35,7 @@ function git_aliases
     #compdef _git gcmsg=git-commit
     alias gco='git checkout'
     #compdef _git gco=git-checkout
-    alias gcm='git checkout master'
+    alias gcm='git checkout main'
     alias gr='git remote'
     #compdef _git gr=git-remote
     alias grv='git remote -v'
@@ -103,7 +103,7 @@ function git_aliases
     alias grt='cd (git rev-parse --show-toplevel; or echo ".")'
 
     # Git and svn mix
-    alias git-svn-dcommit-push='git svn dcommit; and git push github master:svntrunk'
+    alias git-svn-dcommit-push='git svn dcommit; and git push github main:svntrunk'
     #compdef git-svn-dcommit-push=git
 
     alias gsr='git svn rebase'
