@@ -1,6 +1,6 @@
 # Dotfiles
 
-_NixOS at home_
+_NixOS at home._
 
 My typical modern development setup for Python and Rust.
 
@@ -19,6 +19,7 @@ And many more Rust replacements for common Linux tools...
 
 ## Prequisites
 
+- Fedora Linux
 - `python3`
 - `ansible`
 
