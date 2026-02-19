@@ -1,4 +1,9 @@
 ---
+- name: Remove existing nvim config
+  ansible.builtin.file:
+    path: ~/.config/nvim
+    state: absent
+
 - name: Install AstroVim
   ansible.builtin.git:
     repo: https://github.com/AstroNvim/template
