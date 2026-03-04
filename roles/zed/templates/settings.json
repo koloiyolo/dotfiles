@@ -1,4 +1,9 @@
 {
+  "language_models": {
+    "ollama": {
+      "context_window": 32000
+    }
+  },
   "edit_predictions": {
     "mode": "subtle",
     "sweep": {
@@ -18,9 +23,17 @@
     "default_profile": "write",
     "default_model": {
       "provider": "ollama",
-      "model": "gemma3-dev:4b"
+      "model": "qwen3.5-dev:4b"
     },
     "favorite_models": [
+      {
+        "provider": "ollama",
+        "model": "qwen3.5-dev:4b"
+      },
+      {
+        "provider": "ollama",
+        "model": "qwen3.5-dev:9b"
+      },
       {
         "provider": "ollama",
         "model": "gemma3-dev:4b"
@@ -30,7 +43,7 @@
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
+      "milliseconds": 500
     }
   },
   "tab_size": 4,

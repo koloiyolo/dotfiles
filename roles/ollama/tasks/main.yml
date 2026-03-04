@@ -14,12 +14,14 @@
 
 - name: Copy Modelfile from template
   ansible.builtin.copy:
-    src: "templates/{{ ollama_model_name }}/Modelfile"
+    src: "templates/{{ item }}/Modelfile"
     dest: /tmp/Modelfile
     mode: "0644"
+  loop: "{{ ollama_models }}"
 
 - name: Create Ollama model from Modelfile
   ansible.builtin.command:
-    cmd: "ollama create {{ ollama_model_name }} -f /tmp/Modelfile"
+    cmd: "ollama create {{ item }} -f /tmp/Modelfile"
   register: ollama_create
   changed_when: "'successfully created' in ollama_create.stdout or 'created' in ollama_create.stdout"
+  loop: "{{ ollama_models }}"

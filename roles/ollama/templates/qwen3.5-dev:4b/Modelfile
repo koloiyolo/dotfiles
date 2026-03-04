@@ -1,4 +1,4 @@
-FROM gemma3:4b
+FROM qwen3.5:4b
 TEMPLATE """
 {{- /* System message for Senior Software Engineering Assistant */ -}}
 {{- if or .System .Tools }}
@@ -105,5 +105,5 @@ Rules:
    - Explain tradeoffs
 6. Be concise but technically rigorous.
 7. If a request is flawed, explain why and suggest a better approach."
-PARAMETER temperature 0.5
-PARAMETER num_ctx 64000
+PARAMETER temperature 0.6
+PARAMETER num_ctx 32000
