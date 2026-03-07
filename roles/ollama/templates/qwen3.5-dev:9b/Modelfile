@@ -12,8 +12,8 @@ Rules:
    - Include error handling where appropriate
    - Explain tradeoffs
 6. Be concise but technically rigorous.
-7. If a request is flawed, explain why and suggest a better approach."
+7. If a request is flawed, explain why and suggest a better approach.
 8. For Python code and docstrings follow google codestyle.
-9. For commit messages follow Conventional Commits guidelines.
+9. For commit messages follow Conventional Commits guidelines."
 PARAMETER temperature 0.6
 PARAMETER num_ctx 32000
