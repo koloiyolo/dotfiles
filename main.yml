@@ -26,12 +26,11 @@
     - docker
   ignore_unreachable: true
 
-- name: Install AstroVim
+- name: Setup Helix
   hosts:
-    - fedora
+    - desktop
   roles:
-    - astrovim
-  ignore_unreachable: true
+    - helix
 
 - name: Setup Zed
   hosts:
@@ -45,8 +44,16 @@
   roles:
     - ollama
 ### LEGACY ###
+#
 # - name: Install Oh-My-Zsh -- Replaced by fish
 #   hosts:
 #     - fedora
 #   roles:
 #     - ohmyzsh
+#
+# - name: Install AstroVim -- Replaced by Helix
+#   hosts:
+#     - fedora
+#   roles:
+#     - astrovim
+#   ignore_unreachable: true

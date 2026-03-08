@@ -27,4 +27,5 @@
       - zoxide
       - fish
       - ripgrep
+      - clangd
     state: present

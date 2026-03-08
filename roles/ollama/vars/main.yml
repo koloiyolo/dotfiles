@@ -1,3 +1,4 @@
+---
 ollama_models:
   - gemma3-dev:4b
   - qwen3.5-dev:4b
