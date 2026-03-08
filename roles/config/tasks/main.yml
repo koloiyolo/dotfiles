@@ -1,0 +1,12 @@
+---
+- name: Ensure .config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/"
+    state: directory
+    mode: "0755"
+
+- name: Copy configuration file to .config directory
+  ansible.builtin.copy:
+    src: templates/
+    dest: "{{ ansible_env.HOME }}/.config/"
+    mode: "0655"
