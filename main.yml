@@ -7,6 +7,12 @@
     - fedora
   ignore_unreachable: true
 
+- name: Setup .config directory
+  hosts:
+    - fedora
+  roles:
+    - config
+
 - name: Install cargo packages
   hosts:
     - fedora
@@ -31,12 +37,6 @@
   roles:
     - docker
   ignore_unreachable: true
-
-- name: Setup Helix
-  hosts:
-    - desktop
-  roles:
-    - helix
 
 - name: Setup Zed
   hosts:
