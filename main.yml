@@ -25,12 +25,6 @@
   roles:
     - fish
 
-- name: Setup Gnome DE
-  hosts:
-    - gnome
-  roles:
-    - gnome
-
 - name: Install and confiigure Docker
   hosts:
     - fedora
