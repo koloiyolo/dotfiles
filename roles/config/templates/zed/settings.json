@@ -1,67 +1,70 @@
 {
   "language_models": {
     "ollama": {
-      "context_window": 32000
-    }
+      "context_window": 32000,
+    },
   },
   "edit_predictions": {
     "mode": "subtle",
     "sweep": {
-      "privacy_mode": true
+      "privacy_mode": true,
     },
     "ollama": {
       "max_output_tokens": 32,
-      "model": "gemma3-dev:4b"
+      "model": "gemma3-dev:4b",
     },
-    "provider": "ollama"
+    "provider": "ollama",
   },
   "vim_mode": false,
   "preview_tabs": {
-    "enable_preview_multibuffer_from_code_navigation": true
+    "enable_preview_multibuffer_from_code_navigation": true,
   },
   "agent": {
     "default_profile": "write",
     "default_model": {
       "provider": "ollama",
-      "model": "qwen3.5-dev:4b"
+      "model": "qwen3.5-dev:4b",
     },
     "favorite_models": [
       {
         "provider": "ollama",
-        "model": "qwen3.5-dev:4b"
+        "model": "qwen3.5-dev:4b",
       },
       {
         "provider": "ollama",
-        "model": "qwen3.5-dev:9b"
+        "model": "qwen3.5-dev:9b",
       },
       {
         "provider": "ollama",
-        "model": "gemma3-dev:4b"
-      }
+        "model": "gemma3-dev:4b",
+      },
     ],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 500
-    }
+      "milliseconds": 500,
+    },
   },
-  "tab_size": 4,
-  "preferred_line_length": 88,
-  "format_on_save": "on",
-  "soft_wrap": "preferred_line_length",
   "languages": {
     "Python": {
-      "language_servers": ["ty", "!basedpyright", "..."]
+      "tab_size": 4,
+      "preferred_line_length": 88,
+      "format_on_save": "on",
+      "soft_wrap": "preferred_line_length",
+      "language_servers": ["ty", "!basedpyright", "..."],
+    },
+    "Rust": {
+      "tab_size": 4,
+      "preferred_line_length": 88,
+      "format_on_save": "on",
+      "soft_wrap": "preferred_line_length",
     },
     "JSON": {
-      "tab_size": 2,
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "YAML": {
-      "tab_size": 2,
-      "preferred_line_length": 176,
-      "format_on_save": "on"
-    }
-  }
+      "format_on_save": "on",
+    },
+  },
 }
