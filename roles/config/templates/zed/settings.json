@@ -1,4 +1,37 @@
 {
+  "vim_mode": false,
+  "preview_tabs": {
+    "enable_preview_multibuffer_from_code_navigation": true,
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 500,
+    },
+  },
+  // Programming Language settings
+  "languages": {
+    "Python": {
+      "tab_size": 4,
+      "preferred_line_length": 88,
+      "format_on_save": "on",
+      "soft_wrap": "preferred_line_length",
+      "language_servers": ["ty", "!basedpyright", "..."],
+    },
+    "Rust": {
+      "tab_size": 4,
+      "preferred_line_length": 88,
+      "format_on_save": "on",
+      "soft_wrap": "preferred_line_length",
+      "language_servers": ["rust-analyzer"],
+    },
+    "JSON": {
+      "format_on_save": "on",
+    },
+    "YAML": {
+      "format_on_save": "on",
+    },
+  },
+  // AI Settings
   "language_models": {
     "ollama": {
       "context_window": 32000,
@@ -15,10 +48,6 @@
     },
     "provider": "ollama",
   },
-  "vim_mode": false,
-  "preview_tabs": {
-    "enable_preview_multibuffer_from_code_navigation": true,
-  },
   "agent": {
     "default_profile": "write",
     "default_model": {
@@ -32,7 +61,7 @@
       },
       {
         "provider": "ollama",
-        "model": "qwen3.5-dev:9b",
+        "model": "qwen3.5-dev:35b",
       },
       {
         "provider": "ollama",
@@ -40,31 +69,5 @@
       },
     ],
     "model_parameters": [],
-  },
-  "autosave": {
-    "after_delay": {
-      "milliseconds": 500,
-    },
-  },
-  "languages": {
-    "Python": {
-      "tab_size": 4,
-      "preferred_line_length": 88,
-      "format_on_save": "on",
-      "soft_wrap": "preferred_line_length",
-      "language_servers": ["ty", "!basedpyright", "..."],
-    },
-    "Rust": {
-      "tab_size": 4,
-      "preferred_line_length": 88,
-      "format_on_save": "on",
-      "soft_wrap": "preferred_line_length",
-    },
-    "JSON": {
-      "format_on_save": "on",
-    },
-    "YAML": {
-      "format_on_save": "on",
-    },
   },
 }

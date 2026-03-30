@@ -8,4 +8,6 @@
       - du-dust
       - hyperfine
       - bacon
+      - cargo-tarpaulin
+      - coverage-lsp
     state: present
