@@ -61,6 +61,10 @@
       },
       {
         "provider": "ollama",
+        "model": "qwen3.5-dev:9b",
+      },
+      {
+        "provider": "ollama",
         "model": "qwen3.5-dev:35b",
       },
       {
