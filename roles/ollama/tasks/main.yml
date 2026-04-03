@@ -5,9 +5,15 @@
     dest: /tmp/ollama-install.sh
     mode: "0755"
 
-- name: Remove old Ollama version
+- name: Remove old Ollama libraries
   ansible.builtin.file:
     path: "/usr/lib/ollama"
+    state: absent
+  become: true
+
+- name: Remove old Ollama binary
+  ansible.builtin.file:
+    path: "/usr/local/bin/ollama"
     state: absent
   become: true
 
