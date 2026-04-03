@@ -1,4 +1,4 @@
-FROM gemma3:4b
+FROM gemma4:e4b
 TEMPLATE """
 {{- /* System message for Senior Software Engineering Assistant */ -}}
 {{- if or .System .Tools }}
