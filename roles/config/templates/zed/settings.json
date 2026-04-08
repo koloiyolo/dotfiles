@@ -1,4 +1,8 @@
 {
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
   "vim_mode": false,
   "preview_tabs": {
     "enable_preview_multibuffer_from_code_navigation": true,
@@ -15,7 +19,7 @@
       "preferred_line_length": 88,
       "format_on_save": "on",
       "soft_wrap": "preferred_line_length",
-      "language_servers": ["ty", "!basedpyright", "..."],
+      "language_servers": ["ty", "ruff"],
     },
     "Rust": {
       "tab_size": 4,
@@ -39,9 +43,6 @@
   },
   "edit_predictions": {
     "mode": "subtle",
-    "sweep": {
-      "privacy_mode": true,
-    },
     "ollama": {
       "max_output_tokens": 32,
       "model": "gemma3-dev:4b",
