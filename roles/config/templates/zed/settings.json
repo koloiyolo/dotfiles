@@ -53,13 +53,9 @@
     "default_profile": "write",
     "default_model": {
       "provider": "ollama",
-      "model": "qwen3.5-dev:4b",
+      "model": "gemma4-dev:4b",
     },
     "favorite_models": [
-      {
-        "provider": "ollama",
-        "model": "qwen3.5-dev:4b",
-      },
       {
         "provider": "ollama",
         "model": "qwen3.5-dev:9b",
@@ -71,6 +67,10 @@
       {
         "provider": "ollama",
         "model": "gemma3-dev:4b",
+      },
+      {
+        "provider": "ollama",
+        "model": "gemma4-dev:26b",
       },
     ],
     "model_parameters": [],
