@@ -42,10 +42,10 @@
     },
   },
   "edit_predictions": {
-    "mode": "subtle",
+    "mode": "eager",
     "ollama": {
-      "max_output_tokens": 32,
-      "model": "gemma3-dev:4b",
+      "max_output_tokens": 64,
+      "model": "gemma4-dev:e4b",
     },
     "provider": "ollama",
   },
@@ -53,7 +53,7 @@
     "default_profile": "write",
     "default_model": {
       "provider": "ollama",
-      "model": "gemma4-dev:4b",
+      "model": "gemma4-dev:26b",
     },
     "favorite_models": [
       {
@@ -66,7 +66,7 @@
       },
       {
         "provider": "ollama",
-        "model": "gemma3-dev:4b",
+        "model": "gemma4-dev:e4b",
       },
       {
         "provider": "ollama",
