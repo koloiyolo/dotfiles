@@ -44,7 +44,7 @@
   "edit_predictions": {
     "mode": "eager",
     "ollama": {
-      "max_output_tokens": 64,
+      "max_output_tokens": 128,
       "model": "gemma4-dev:e4b",
     },
     "provider": "ollama",
@@ -58,11 +58,7 @@
     "favorite_models": [
       {
         "provider": "ollama",
-        "model": "qwen3.5-dev:9b",
-      },
-      {
-        "provider": "ollama",
-        "model": "qwen3.5-dev:35b",
+        "model": "qwen3.6-dev:35b",
       },
       {
         "provider": "ollama",

@@ -2,5 +2,4 @@
 ollama_models:
   - gemma4-dev:e4b
   - gemma4-dev:26b
-  - qwen3.5-dev:9b
-  - qwen3.5-dev:35b
+  - qwen3.6-dev:35b
