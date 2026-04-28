@@ -1,4 +1,16 @@
 ---
+- name: Ensure the fish .config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/fish/"
+    state: directory
+    mode: "0755"
+
+- name: Copy configuration file to the fish .config directory
+  ansible.builtin.copy:
+    src: templates/
+    dest: "{{ ansible_env.HOME }}/.config/fish/"
+    mode: "0655"
+
 - name: Ensure .env file exists in home directory
   ansible.builtin.copy:
     dest: "{{ ansible_env.HOME }}/.env"

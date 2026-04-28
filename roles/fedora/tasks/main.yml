@@ -16,7 +16,6 @@
     name:
       - neovim
       - fzf
-      # - zsh legacy
       - fastfetch
       - git
       - curl
