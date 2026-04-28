@@ -1,4 +1,16 @@
 ---
+- name: Ensure the zed .config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/zed/"
+    state: directory
+    mode: "0755"
+
+- name: Copy configuration file to the zed .config directory
+  ansible.builtin.copy:
+    src: templates/
+    dest: "{{ ansible_env.HOME }}/.config/zed/"
+    mode: "0655"
+
 - name: Download Zed installer
   ansible.builtin.get_url:
     url: https://zed.dev/install.sh

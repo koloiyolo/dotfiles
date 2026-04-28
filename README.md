@@ -29,9 +29,9 @@ sudo dnf install python3 ansible
 
 ## Setup Your machine
 
-1. Set `ansible_user` variable in `inventory/setup.ini` to your current username.
+1. Set `ansible_user` variable in `inventory/personal.ini` to your current username.
 2. Run ansible playbook:
 
 ```bash
-ansible-playbook -i inventory/setup.ini main.yml --ask-become-pass -v
+ansible-playbook -i inventory/personal.ini personal_device.yml --ask-become-pass -v
 ```

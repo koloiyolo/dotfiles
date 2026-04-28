@@ -7,12 +7,6 @@
     - fedora
   ignore_unreachable: true
 
-- name: Setup .config directory
-  hosts:
-    - fedora
-  roles:
-    - config
-
 - name: Install cargo packages
   hosts:
     - fedora
@@ -32,28 +26,20 @@
     - docker
   ignore_unreachable: true
 
+- name: Setup Helix
+  hosts:
+    - desktop
+  roles:
+    - helix-setup
+
 - name: Setup Zed
   hosts:
     - desktop
   roles:
-    - zed
+    - zed-setup
 
 - name: Setup Ollama
   hosts:
     - desktop
   roles:
     - ollama
-### LEGACY ###
-#
-# - name: Install Oh-My-Zsh -- Replaced by fish
-#   hosts:
-#     - fedora
-#   roles:
-#     - ohmyzsh
-#
-# - name: Install AstroVim -- Replaced by Helix
-#   hosts:
-#     - fedora
-#   roles:
-#     - astrovim
-#   ignore_unreachable: true
