@@ -1,4 +1,19 @@
 {
+  "outline_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "tasks": {
+    "enabled": true,
+  },
+  "toolbar": {
+    "code_actions": true,
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
