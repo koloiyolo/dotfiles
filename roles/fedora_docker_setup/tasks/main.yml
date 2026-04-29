@@ -1,0 +1,44 @@
+---
+- name: Install dnf-plugins-core
+  become: true
+  ansible.builtin.dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Check if Docker RPM repository exists
+  ansible.builtin.stat:
+    path: /etc/yum.repos.d/docker-ce.repo
+  register: fedora_docker_setup_repo_exists
+
+- name: Setup RPM repository
+  become: true
+  changed_when: true
+  when: not fedora_docker_setup_repo_exists.stat.exists
+  ansible.builtin.command:
+    cmd: "dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo"
+
+- name: Install Docker
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+
+- name: Ensure docker is running
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
+
+- name: Add current user to Docker group
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups:
+      - docker
+    append: true

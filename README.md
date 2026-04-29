@@ -20,18 +20,46 @@ And many more Rust replacements for common Linux tools...
 ## Prequisites
 
 - Fedora Linux
-- `python3`
-- `ansible`
+- `python3.13`
+- `uv`
 
 ```bash
-sudo dnf install python3 ansible
+uv sync
+
+uv run ansible-galaxy collection install -r requirements.yml
 ```
 
-## Setup Your machine
+## Setup your machine
 
 1. Set `ansible_user` variable in `inventory/personal.ini` to your current username.
 2. Run ansible playbook:
 
 ```bash
-ansible-playbook -i inventory/personal.ini personal_device.yml --ask-become-pass -v
+uv run ansible-playbook -i inventory/personal.ini fedora_personal_device.yml --ask-become-pass -v
+```
+
+## Setup my homelab :D
+
+### First run
+
+We need to setup the default user first
+
+```bash
+uv run ansible-playbook -i inventory/homelab.ini debian_server_first_setup.yml -u root -e ansible_user=root  --ask-pass
+```
+
+### Run nominal maintenance playbook
+
+```bash
+uv run ansible-playbook -i inventory/homelab.ini debian_server_maintenance.yml
+```
+
+## Contributing
+
+Before submitting your merge request, please fix all issues highlighted by:
+
+```bash
+uv sync
+
+uv run ansible-lint *.yml
 ```

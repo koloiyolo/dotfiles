@@ -1,0 +1,7 @@
+---
+- name: Setup Debian default user
+  hosts:
+    - debian
+  become: true
+  roles:
+    - debian_user_setup

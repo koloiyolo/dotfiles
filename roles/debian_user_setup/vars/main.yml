@@ -1,0 +1,2 @@
+debian_user_setup_username: jakub
+debian_user_setup_public_key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"

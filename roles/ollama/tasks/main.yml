@@ -18,8 +18,10 @@
   become: true
 
 - name: Install Ollama
-  ansible.builtin.command:
-    cmd: /tmp/ollama-install.sh
+  ansible.builtin.command: /tmp/ollama-install.sh
+  become: true
+  environment:
+    SUDO_ASKPASS: /bin/false
   args:
     creates: /usr/local/bin/ollama
   register: ollama_install

@@ -1,0 +1,32 @@
+---
+- name: Perform Debian / Ubuntu maintenance task
+  hosts:
+    - debian
+  become: true
+  roles:
+    - debian_maintenance
+  ignore_unreachable: true
+
+- name: Setup SSH
+  hosts:
+    - server
+  roles:
+    - ssh_setup
+
+- name: Install cargo packages
+  hosts:
+    - server
+  roles:
+    - cargo_maintenance
+
+- name: Install Fish
+  hosts:
+    - server
+  roles:
+    - fish_setup
+
+- name: Setup Helix
+  hosts:
+    - server
+  roles:
+    - helix_setup

@@ -1,0 +1,46 @@
+---
+- name: Ensure correct dnf file
+  ansible.builtin.copy:
+    src: templates/dnf.conf
+    dest: /etc/dnf/dnf.conf
+    mode: "0600"
+
+- name: Ensure system and packages are updated
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: true
+
+- name: Install basic packages
+  ansible.builtin.dnf:
+    name:
+      - neovim
+      - fzf
+      - fastfetch
+      - git
+      - curl
+      - dnf-plugins-core
+      - ruff
+      - zoxide
+      - fish
+      - ripgrep
+      - clangd
+    state: present
+
+# `rustup` from dnf doesn't work
+- name: Download rustup installer
+  ansible.builtin.get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/rustup.sh
+    mode: "0755"
+
+- name: Run rustup installer
+  ansible.builtin.command: /tmp/rustup.sh -y
+  args:
+    creates: "{{ ansible_facts.env.HOME }}/.cargo/bin/rustup"
+
+- name: Add cargo to PATH (bash)
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts.env.HOME }}/.bashrc"
+    line: 'export PATH="$HOME/.cargo/bin:$PATH"'
+    state: present

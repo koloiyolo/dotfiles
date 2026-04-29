@@ -1,0 +1,30 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Ensure system and packages are updated
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+    update_cache: true
+
+- name: Install basic packages
+  ansible.builtin.apt:
+    name:
+      - neovim
+      - fzf
+      - fastfetch
+      - git
+      - curl
+      - rustup
+      - dnf-plugins-core
+      - zoxide
+      - fish
+      - ripgrep
+      - clangd
+      - build-essential
+      - libssl-dev
+    state: present

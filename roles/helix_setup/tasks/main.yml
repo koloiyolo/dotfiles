@@ -1,0 +1,12 @@
+---
+- name: Ensure the helix .config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.config/helix/"
+    state: directory
+    mode: "0755"
+
+- name: Copy configuration file to the fish .config directory
+  ansible.builtin.copy:
+    src: templates/
+    dest: "{{ ansible_facts.env.HOME }}/.config/helix/"
+    mode: "0655"
