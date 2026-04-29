@@ -1,0 +1,10 @@
+[project]
+name = "dotfiles"
+version = "0.21.37"
+description = "Personal `.dotfiles` directory. NixOS at home."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ansible-core>=2.20.5",
+    "ansible-lint>=26.4.0",
+]

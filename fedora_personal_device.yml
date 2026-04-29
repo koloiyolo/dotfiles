@@ -1,0 +1,45 @@
+---
+- name: Perform Fedora maintenance task
+  hosts:
+    - fedora
+  become: true
+  roles:
+    - fedora_maintenance
+  ignore_unreachable: true
+
+- name: Install cargo packages
+  hosts:
+    - all
+  roles:
+    - cargo_maintenance
+
+- name: Install Fish
+  hosts:
+    - all
+  roles:
+    - fish_setup
+
+- name: Install and confiigure Docker
+  hosts:
+    - fedora
+  roles:
+    - fedora_docker_setup
+  ignore_unreachable: true
+
+- name: Setup Helix
+  hosts:
+    - all
+  roles:
+    - helix_setup
+
+- name: Setup Zed
+  hosts:
+    - desktop
+  roles:
+    - zed_setup
+
+- name: Setup Ollama
+  hosts:
+    - all
+  roles:
+    - ollama
