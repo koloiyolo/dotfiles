@@ -6,12 +6,17 @@
     line: "PasswordAuthentication no"
   become: true
 
-- name: Disable root login
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: "^PermitRootLogin"
-    line: "PermitRootLogin no"
-  become: true
+- name: Ensure the .ssh directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.ssh/"
+    state: directory
+    mode: "0700"
+
+- name: Copy authorized_keys file to the .ssh directory
+  ansible.builtin.copy:
+    src: templates/
+    dest: "{{ ansible_facts.env.HOME }}/.ssh/"
+    mode: "0600"
 
 - name: Restart SSH
   ansible.builtin.service:

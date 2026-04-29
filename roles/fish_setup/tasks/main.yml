@@ -23,3 +23,9 @@
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     shell: /usr/bin/fish
+
+- name: Ensure Fish is the default shell for root
+  become: true
+  ansible.builtin.user:
+    name: "root"
+    shell: /usr/bin/fish

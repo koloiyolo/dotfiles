@@ -14,7 +14,6 @@
 - name: Install basic packages
   ansible.builtin.dnf:
     name:
-      - neovim
       - fzf
       - fastfetch
       - git
@@ -25,6 +24,7 @@
       - fish
       - ripgrep
       - clangd
+      - hx
     state: present
 
 # `rustup` from dnf doesn't work

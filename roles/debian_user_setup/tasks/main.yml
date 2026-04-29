@@ -40,3 +40,9 @@
     owner: "{{ debian_user_setup_username }}"
     group: "{{ debian_user_setup_username }}"
     mode: "0600"
+
+- name: Restart SSH
+  ansible.builtin.service:
+    name: ssh
+    state: restarted
+  become: true
