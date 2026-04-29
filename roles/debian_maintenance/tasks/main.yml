@@ -14,17 +14,16 @@
 - name: Install basic packages
   ansible.builtin.apt:
     name:
-      - neovim
       - fzf
       - fastfetch
       - git
       - curl
       - rustup
-      - dnf-plugins-core
       - zoxide
       - fish
       - ripgrep
       - clangd
       - build-essential
       - libssl-dev
+      - hx
     state: present
