@@ -14,8 +14,8 @@
 - name: Install basic packages
   ansible.builtin.apt:
     name:
+      - sudo
       - fzf
-      - fastfetch
       - git
       - curl
       - rustup
@@ -26,4 +26,5 @@
       - build-essential
       - libssl-dev
       - hx
+      - tmux
     state: present
