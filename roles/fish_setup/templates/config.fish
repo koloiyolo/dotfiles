@@ -13,5 +13,5 @@ git_aliases
 
 ### ALIASES
 alias eza="ls"
-alias cat="bat"
+alias cat="bat -p"
 alias du="dust"

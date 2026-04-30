@@ -7,6 +7,14 @@
     - debian_maintenance
   ignore_unreachable: true
 
+- name: Perform Proxmox maintenance task
+  hosts:
+    - proxmox
+  become: true
+  roles:
+    - proxmox_maintenance
+  ignore_unreachable: true
+
 - name: Setup SSH
   hosts:
     - server
