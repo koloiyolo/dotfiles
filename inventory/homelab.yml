@@ -1,0 +1,45 @@
+all:
+  vars:
+    ip_prefix: 192.168.69
+    default_user: jakub
+
+  hosts:
+    host01:
+      ansible_host: "{{ ip_prefix }}.10"
+      ansible_user: "{{ default_user }}"
+
+    host02:
+      ansible_host: "{{ ip_prefix }}.20"
+      ansible_user: "{{ default_user }}"
+
+    postgresql:
+      ansible_host: "{{ ip_prefix }}.100"
+      ansible_user: "{{ default_user }}"
+
+    grafana:
+      ansible_host: "{{ ip_prefix }}.200"
+      ansible_user: "{{ default_user }}"
+
+debian:
+  hosts:
+    host01:
+    host02:
+    postgresql:
+    grafana:
+
+server:
+  hosts:
+    host01:
+    host02:
+    postgresql:
+    grafana:
+
+proxmox:
+  hosts:
+    host01:
+    host02:
+
+host:
+  hosts:
+    host01:
+    host02:
