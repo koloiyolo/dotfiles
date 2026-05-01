@@ -10,7 +10,6 @@
 - name: Install cargo packages
   community.general.cargo:
     name:
-      - uv
       - bat
       - eza
       - ripgrep

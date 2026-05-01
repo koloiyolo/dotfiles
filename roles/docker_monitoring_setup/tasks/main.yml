@@ -1,0 +1,67 @@
+---
+- name: Ensure Docker service is running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Create Alloy config directory
+  ansible.builtin.file:
+    dest: alloy
+    state: directory
+    mode: "0755"
+
+- name: Copy Alloy config
+  ansible.builtin.template:
+    src: templates/alloy.hcl.j2
+    dest: alloy/config.alloy
+    mode: "0644"
+    force: true
+
+- name: Create monitoring network
+  community.docker.docker_network:
+    name: "{{ docker_monitoring_setup_network }}"
+
+- name: Run cAdvisor container
+  community.docker.docker_container:
+    name: "{{ docker_monitoring_setup_cadvisor }}"
+    image: "{{ docker_monitoring_setup_cadvisor_image }}"
+    state: started
+    restart_policy: always
+    networks:
+      - name: "{{ docker_monitoring_setup_network }}"
+    ports:
+      - "{{ docker_monitoring_setup_cadvisor_port }}:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+
+- name: Run Grafana Alloy
+  community.docker.docker_container:
+    name: "{{ docker_monitoring_setup_alloy }}"
+    image: grafana/alloy:latest
+    state: started
+    restart_policy: always
+    networks:
+      - name: "{{ docker_monitoring_setup_network }}"
+    ports:
+      - "12345:12345"
+    volumes:
+      - ./alloy:/etc/alloy
+      - /var/log/journal:/var/log/journal:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: >
+      run --server.http.listen-addr=0.0.0.0:12345
+      /etc/alloy/config.alloy
+
+- name: Restart docker
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: restarted
