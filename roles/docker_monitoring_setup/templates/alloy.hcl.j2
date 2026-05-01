@@ -1,0 +1,37 @@
+prometheus.scrape "cadvisor" {
+    targets = [{
+        "__address__" = "cadvisor:8080",
+        "instance" = "{{ inventory_hostname }}",
+    }]
+
+    forward_to = [prometheus.remote_write.mimir.receiver]
+}
+
+prometheus.remote_write "mimir" {
+  endpoint {
+    url = "http://{{ hostvars['grafana'].ansible_host }}:9009/api/v1/push"
+  }
+}
+
+loki.source.docker "containers" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = []
+
+  forward_to = [loki.write.loki.receiver]
+}
+
+loki.source.journal "default" {
+  path   = "/var/log/journal"
+  labels = {
+    instance = "{{ inventory_hostname }}",
+    job      = "journal",
+  }
+
+  forward_to = [loki.write.loki.receiver]
+}
+
+loki.write "loki" {
+  endpoint {
+    url = "http://{{ hostvars['grafana'].ansible_host }}:3100/loki/api/v1/push"
+  }
+}

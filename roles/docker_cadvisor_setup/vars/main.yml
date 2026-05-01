@@ -1,3 +1,0 @@
-docker_cadvisor_setup_container_name: cadvisor
-docker_cadvisor_setup_image: gcr.io/cadvisor/cadvisor:latest
-docker_cadvisor_setup_port: 8888

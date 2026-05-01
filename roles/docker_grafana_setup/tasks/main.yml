@@ -11,21 +11,30 @@
     state: directory
     mode: "0755"
   loop:
-    - alloy
     - grafana/provisioning/datasources/
     - mimir
+    - loki
 
-- name: Copy Alloy config
-  ansible.builtin.template:
-    src: templates/alloy.hcl.j2
-    dest: alloy/config.alloy
-    mode: "0644"
-    force: true
+- name: Create Grafana data directory
+  ansible.builtin.file:
+    dest: grafana_data
+    state: directory
+    mode: "0755"
+    owner: 472
+    group: 472
+  become: true
 
 - name: Copy Mimir config
   ansible.builtin.copy:
     src: templates/mimir.yml
     dest: mimir/config.yml
+    mode: "0644"
+    force: true
+
+- name: Copy Loki config
+  ansible.builtin.template:
+    src: templates/loki.yml.j2
+    dest: loki/config.yml
     mode: "0644"
     force: true
 
@@ -38,23 +47,7 @@
 
 - name: Create Grafana network
   community.docker.docker_network:
-    name: grafana_network
-
-- name: Run Grafana Alloy
-  community.docker.docker_container:
-    name: "{{ docker_grafana_setup_alloy_container }}"
-    image: grafana/alloy:latest
-    state: started
-    restart_policy: always
-    networks:
-      - name: grafana_network
-    ports:
-      - "12345:12345"
-    volumes:
-      - ./alloy:/etc/alloy
-    command: >
-      run --server.http.listen-addr=0.0.0.0:12345
-      /etc/alloy/config.alloy
+    name: "{{ docker_grafana_setup_network }}"
 
 - name: Run Mimir
   community.docker.docker_container:
@@ -64,7 +57,7 @@
     state: started
     restart_policy: always
     networks:
-      - name: grafana_network
+      - name: "{{ docker_grafana_setup_network }}"
     ports:
       - "9009:9009"
     volumes:
@@ -77,10 +70,12 @@
     state: started
     restart_policy: always
     networks:
-      - name: grafana_network
+      - name: "{{ docker_grafana_setup_network }}"
     ports:
       - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/config.yml
+    volumes:
+      - ./loki:/etc/loki
 
 - name: Run Grafana
   community.docker.docker_container:
@@ -89,9 +84,9 @@
     state: started
     restart_policy: always
     networks:
-      - name: grafana_network
+      - name: "{{ docker_grafana_setup_network }}"
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     ports:
       - "3000:3000"

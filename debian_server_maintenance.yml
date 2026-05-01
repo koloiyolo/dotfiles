@@ -27,11 +27,11 @@
   roles:
     - docker_setup
 
-- name: Setup cAdvisor monitoring
+- name: Setup server monitoring
   hosts:
     - server
   roles:
-    - docker_cadvisor_setup
+    - docker_monitoring_setup
 
 - name: Setup Fish
   hosts:
