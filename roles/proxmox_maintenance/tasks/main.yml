@@ -2,3 +2,4 @@
 - name: Update available LXC containers templates
   ansible.builtin.command: pveam update
   become: true
+  changed_when: false

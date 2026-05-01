@@ -21,13 +21,19 @@
   roles:
     - ssh_setup
 
-- name: Install cargo packages
+- name: Ensure Docker is installed
   hosts:
     - server
   roles:
-    - cargo_maintenance
+    - docker_setup
 
-- name: Install Fish
+- name: Setup cAdvisor monitoring
+  hosts:
+    - server
+  roles:
+    - docker_cadvisor_setup
+
+- name: Setup Fish
   hosts:
     - server
   roles:
@@ -38,3 +44,9 @@
     - server
   roles:
     - helix_setup
+
+- name: Install cargo packages
+  hosts:
+    - server
+  roles:
+    - cargo_maintenance

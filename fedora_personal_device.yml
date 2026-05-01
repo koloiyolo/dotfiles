@@ -19,11 +19,11 @@
   roles:
     - fish_setup
 
-- name: Install and confiigure Docker
+- name: Ensure Docker is installed
   hosts:
     - fedora
   roles:
-    - fedora_docker_setup
+    - docker_setup
   ignore_unreachable: true
 
 - name: Setup Helix

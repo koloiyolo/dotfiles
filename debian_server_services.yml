@@ -1,0 +1,12 @@
+---
+- name: Setup Grafana
+  hosts:
+    - grafana
+  roles:
+    - docker_grafana_setup
+
+- name: Setup Postgres
+  hosts:
+    - postgresql
+  roles:
+    - docker_postgres_setup
