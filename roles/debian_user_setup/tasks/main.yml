@@ -1,4 +1,18 @@
 ---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Install basic packages
+  ansible.builtin.apt:
+    name:
+      - sudo
+      - curl
+      - hx
+    state: present
+
 - name: Ensure user exists with home directory
   ansible.builtin.user:
     name: "{{ debian_user_setup_username }}"
@@ -17,7 +31,6 @@
     state: present
     regexp: '^{{ debian_user_setup_username }}\s'
     line: "{{ debian_user_setup_username }} ALL=(ALL) NOPASSWD:ALL"
-    create: true
   become: true
 
 - name: Create .ssh directory
@@ -40,20 +53,6 @@
     owner: "{{ debian_user_setup_username }}"
     group: "{{ debian_user_setup_username }}"
     mode: "0600"
-
-- name: Update apt cache
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: 3600
-  become: true
-
-- name: Install basic packages
-  ansible.builtin.apt:
-    name:
-      - sudo
-      - curl
-      - hx
-    state: present
 
 - name: Restart SSH
   ansible.builtin.service:

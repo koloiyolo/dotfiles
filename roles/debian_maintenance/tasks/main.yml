@@ -27,4 +27,5 @@
       - libssl-dev
       - hx
       - tmux
+      - tree
     state: present

@@ -1,0 +1,24 @@
+---
+- name: Ensure Docker service is running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Run PostgreSQL container
+  community.docker.docker_container:
+    name: postgres
+    image: postgres:18.3-alpine3.22
+    state: started
+    restart_policy: always
+
+    ports:
+      - "5432:5432"
+
+    env:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: very_secret_password
+      POSTGRES_DB: postgres
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
