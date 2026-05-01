@@ -40,6 +40,14 @@ uv run ansible-playbook -i inventory/personal.ini fedora_personal_device.yml --a
 
 ## Setup my homelab :D
 
+### Features
+
+ - Automated deployment of SSH keys to the new nodes.
+ - Automated deployment of my current development setup and shell configuration.
+ - Maintenance playbooks for Debian and Fedora.
+ - Orchestrated LGTM monitoring stack deployment.
+ - Automated deployment of personal services.
+
 ### First run
 
 We need to setup the default user first
