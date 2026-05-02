@@ -1,11 +1,11 @@
 // Prometheus metric collection configuration
 
 // Node Exporter setup: collects hardware and OS-level metrics
-prometheus.exporter.node "default" {}
+prometheus.exporter.unix "default" {}
 
-// Relabeling rules to map node exporter targets to the specific Ansible inventory hostname
-discovery.relabel "node" {
-    targets=prometheus.exporter.node.default.targets
+// Relabeling rules to map unix exporter targets to the specific Ansible inventory hostname
+discovery.relabel "unix" {
+    targets=prometheus.exporter.unix.default.targets
 
     rule {
         target_label = "instance"
@@ -14,8 +14,8 @@ discovery.relabel "node" {
 }
 
 // Scrape job for Node Exporter metrics, forwarding to Mimir
-prometheus.scrape "node" {
-    targets=discovery.relabel.node.output
+prometheus.scrape "unix" {
+    targets=discovery.relabel.unix.output
 
     forward_to = [prometheus.remote_write.mimir.receiver]
 }
