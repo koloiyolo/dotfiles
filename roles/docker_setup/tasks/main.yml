@@ -25,7 +25,7 @@
     groups:
       - docker
     append: true
-  notify: Restart docker after adding the user
+  notify: Restart docker
 
 - name: Ensure docker is running
   become: true

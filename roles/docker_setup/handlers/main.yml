@@ -1,5 +1,5 @@
 ---
-- name: Restart docker after adding the user
+- name: Restart docker
   become: true
   ansible.builtin.systemd:
     name: docker
