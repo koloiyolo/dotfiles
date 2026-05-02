@@ -8,7 +8,7 @@ discovery.relabel "unix" {
     targets=prometheus.exporter.unix.default.targets
 
     rule {
-        target_label = "instance"
+        target_label = "nodename"
         replacement = "{{ inventory_hostname }}"
     }
 }
@@ -24,7 +24,7 @@ prometheus.scrape "unix" {
 prometheus.scrape "cadvisor" {
     targets = [{
         "__address__" = "cadvisor:8080",
-        "instance" = "{{ inventory_hostname }}",
+        "nodename" = "{{ inventory_hostname }}",
     }]
 
     forward_to = [prometheus.remote_write.mimir.receiver]
@@ -44,7 +44,7 @@ loki.source.docker "containers" {
 loki.source.journal "default" {
   path   = "/var/log/journal"
   labels = {
-    instance = "{{ inventory_hostname }}",
+    nodename = "{{ inventory_hostname }}",
     job      = "journal",
   }
 
