@@ -1,3 +1,26 @@
+// Prometheus metric collection configuration
+
+// Node Exporter setup: collects hardware and OS-level metrics
+prometheus.exporter.node "default" {}
+
+// Relabeling rules to map node exporter targets to the specific Ansible inventory hostname
+discovery.relabel "node" {
+    targets=prometheus.exporter.node.default.targets
+
+    rule {
+        target_label = "instance"
+        replacement = "{{ inventory_hostname }}"
+    }
+}
+
+// Scrape job for Node Exporter metrics, forwarding to Mimir
+prometheus.scrape "node" {
+    targets=discovery.relabel.node.output
+
+    forward_to = [prometheus.remote_write.mimir.receiver]
+}
+
+// Scrape job for cAdvisor metrics (container-level metrics), forwarding to Mimir
 prometheus.scrape "cadvisor" {
     targets = [{
         "__address__" = "cadvisor:8080",
@@ -7,12 +30,9 @@ prometheus.scrape "cadvisor" {
     forward_to = [prometheus.remote_write.mimir.receiver]
 }
 
-prometheus.remote_write "mimir" {
-  endpoint {
-    url = "http://{{ hostvars['grafana'].ansible_host }}:9009/api/v1/push"
-  }
-}
+// Loki log collection configuration
 
+// Docker log collection via the Docker socket
 loki.source.docker "containers" {
   host       = "unix:///var/run/docker.sock"
   targets    = []
@@ -20,6 +40,7 @@ loki.source.docker "containers" {
   forward_to = [loki.write.loki.receiver]
 }
 
+// Systemd journal log collection
 loki.source.journal "default" {
   path   = "/var/log/journal"
   labels = {
@@ -30,6 +51,17 @@ loki.source.journal "default" {
   forward_to = [loki.write.loki.receiver]
 }
 
+
+// Remote write/push configurations (Exporters)
+
+// Configuration to push Prometheus metrics to Grafana Mimir
+prometheus.remote_write "mimir" {
+  endpoint {
+    url = "http://{{ hostvars['grafana'].ansible_host }}:9009/api/v1/push"
+  }
+}
+
+// Configuration to push Loki logs to Grafana Loki
 loki.write "loki" {
   endpoint {
     url = "http://{{ hostvars['grafana'].ansible_host }}:3100/loki/api/v1/push"
