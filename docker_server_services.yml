@@ -1,0 +1,18 @@
+---
+- name: Setup Grafana
+  hosts:
+    - grafana
+  roles:
+    - docker_grafana_setup
+
+- name: Setup PiHole
+  hosts:
+    - pihole
+  roles:
+    - docker_pihole_setup
+
+- name: Setup Postgres
+  hosts:
+    - postgresql
+  roles:
+    - docker_postgres_setup

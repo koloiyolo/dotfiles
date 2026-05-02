@@ -12,12 +12,16 @@ all:
       ansible_host: "{{ ip_prefix }}.20"
       ansible_user: "{{ default_user }}"
 
-    postgresql:
+    grafana:
       ansible_host: "{{ ip_prefix }}.100"
       ansible_user: "{{ default_user }}"
 
-    grafana:
-      ansible_host: "{{ ip_prefix }}.200"
+    postgresql:
+      ansible_host: "{{ ip_prefix }}.110"
+      ansible_user: "{{ default_user }}"
+
+    tailscale_node:
+      ansible_host: "{{ ip_prefix }}.253"
       ansible_user: "{{ default_user }}"
 
     pihole:
@@ -31,6 +35,7 @@ debian:
     postgresql:
     grafana:
     pihole:
+    tailscale_node:
 
 server:
   hosts:
@@ -39,6 +44,7 @@ server:
     postgresql:
     grafana:
     pihole:
+    tailscale_node:
 
 proxmox:
   hosts:
