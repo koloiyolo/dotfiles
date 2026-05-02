@@ -1,18 +1,7 @@
 ---
-- name: Setup Grafana
+# Installing Client manually via prepared script
+- name: Setup Tailscale
   hosts:
-    - grafana
+    - tailscale_node
   roles:
-    - docker_grafana_setup
-
-- name: Setup PiHole
-  hosts:
-    - pihole
-  roles:
-    - docker_pihole_setup
-
-- name: Setup Postgres
-  hosts:
-    - postgresql
-  roles:
-    - docker_postgres_setup
+    - debian_tailscale_setup
