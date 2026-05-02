@@ -18,13 +18,6 @@
   when: docker_setup_check.rc != 0
   changed_when: false
 
-- name: Ensure docker is running
-  become: true
-  ansible.builtin.systemd:
-    name: docker
-    enabled: true
-    state: started
-
 - name: Add current user to Docker group
   become: true
   ansible.builtin.user:
@@ -32,3 +25,11 @@
     groups:
       - docker
     append: true
+  notify: Restart docker after adding the user
+
+- name: Ensure docker is running
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
