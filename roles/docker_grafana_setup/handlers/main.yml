@@ -1,0 +1,18 @@
+---
+- name: Restart Grafana container
+  community.docker.docker_container:
+    name: "{{ docker_grafana_setup_grafana_container }}"
+    state: started
+    restart: true
+
+- name: Restart Mimir container
+  community.docker.docker_container:
+    name: "{{ docker_grafana_setup_mimir_container }}"
+    state: started
+    restart: true
+
+- name: Restart Loki container
+  community.docker.docker_container:
+    name: "{{ docker_grafana_setup_loki_container }}"
+    state: started
+    restart: true

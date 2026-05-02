@@ -17,6 +17,7 @@
     dest: alloy/config.alloy
     mode: "0644"
     force: true
+  notify: Restart Alloy container
 
 - name: Create monitoring network
   community.docker.docker_network:
@@ -58,10 +59,3 @@
     command: >
       run --server.http.listen-addr=0.0.0.0:12345
       /etc/alloy/config.alloy
-
-- name: Restart docker
-  become: true
-  ansible.builtin.systemd:
-    name: docker
-    enabled: true
-    state: restarted

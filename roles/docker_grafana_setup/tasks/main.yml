@@ -30,6 +30,7 @@
     dest: mimir/config.yml
     mode: "0644"
     force: true
+  notify: Restart Mimir container
 
 - name: Copy Loki config
   ansible.builtin.template:
@@ -37,6 +38,7 @@
     dest: loki/config.yml
     mode: "0644"
     force: true
+  notify: Restart Loki container
 
 - name: Setup data sources in Grafana
   ansible.builtin.template:
@@ -44,6 +46,7 @@
     dest: grafana/provisioning/datasources/monitoring.yml
     mode: "0644"
     force: true
+  notify: Restart Grafana container
 
 - name: Create Grafana network
   community.docker.docker_network:
@@ -90,10 +93,3 @@
       - ./grafana/provisioning:/etc/grafana/provisioning
     ports:
       - "3000:3000"
-
-- name: Restart docker
-  become: true
-  ansible.builtin.systemd:
-    name: docker
-    enabled: true
-    state: restarted

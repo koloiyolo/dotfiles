@@ -1,0 +1,22 @@
+[dns]
+upstreams = [ "8.8.8.8", "8.8.4.4", "127.0.0.1#5335", "1.1.1.1"]
+
+hosts = [
+{% for host in groups['server'] %}
+    "{{ hostvars[host].ansible_host }} {{ hostvars[host].inventory_hostname }}.lab",
+{% endfor %}
+]
+
+[dns.domain]
+name = "lab"
+local = true
+
+[dhcp]
+active = true
+
+router = "{{ ip_prefix }}.1"
+start = "{{ ip_prefix }}.40"
+end = "{{ ip_prefix }}.99"
+
+leaseTime = "3h"
+rapidCommit = true

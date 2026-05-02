@@ -20,12 +20,17 @@ all:
       ansible_host: "{{ ip_prefix }}.200"
       ansible_user: "{{ default_user }}"
 
+    pihole:
+      ansible_host: "{{ ip_prefix }}.254"
+      ansible_user: "{{ default_user }}"
+
 debian:
   hosts:
     host01:
     host02:
     postgresql:
     grafana:
+    pihole:
 
 server:
   hosts:
@@ -33,6 +38,7 @@ server:
     host02:
     postgresql:
     grafana:
+    pihole:
 
 proxmox:
   hosts:
