@@ -33,14 +33,14 @@
       "tab_size": 4,
       "preferred_line_length": 88,
       "format_on_save": "on",
-      "soft_wrap": "preferred_line_length",
+      "soft_wrap": "prefer_line",
       "language_servers": ["ty", "ruff"],
     },
     "Rust": {
       "tab_size": 4,
       "preferred_line_length": 88,
       "format_on_save": "on",
-      "soft_wrap": "preferred_line_length",
+      "soft_wrap": "prefer_line",
       "language_servers": ["rust-analyzer"],
     },
     "JSON": {
@@ -52,36 +52,51 @@
   },
   // AI Settings
   "language_models": {
+    "openai_compatible": {
+      "Gemma4 -- Llama.cpp": {
+        "api_url": "http://127.0.0.1:8080/v1",
+        "available_models": [
+          {
+            "name": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
+            "max_tokens": 32000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 32000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": false,
+            },
+          },
+        ],
+      },
+    },
     "ollama": {
       "context_window": 32000,
     },
   },
   "edit_predictions": {
-    "mode": "eager",
-    "ollama": {
-      "max_output_tokens": 128,
-      "model": "gemma4-dev:e4b",
+    "open_ai_compatible_api": {
+      "model": "\"unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS\"",
+      "api_url": "http://127.0.0.1:8080/v1",
     },
-    "provider": "ollama",
+    "mode": "eager",
+    "provider": "open_ai_compatible_api",
   },
   "agent": {
+    "dock": "right",
+    "sidebar_side": "right",
     "default_profile": "write",
     "default_model": {
-      "provider": "ollama",
-      "model": "gemma4-dev:26b",
+      "provider": "Gemma4 -- Llama.cpp",
+      "model": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
     },
     "favorite_models": [
       {
-        "provider": "ollama",
-        "model": "qwen3.6-dev:35b",
-      },
-      {
-        "provider": "ollama",
-        "model": "gemma4-dev:e4b",
-      },
-      {
-        "provider": "ollama",
-        "model": "gemma4-dev:26b",
+        "provider": "Gemma4 -- Llama.cpp",
+        "model": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
       },
     ],
     "model_parameters": [],

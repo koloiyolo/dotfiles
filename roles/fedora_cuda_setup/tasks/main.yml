@@ -1,0 +1,29 @@
+---
+- name: Ensure that the CUDA libraries are installed
+  ansible.builtin.dnf:
+    name:
+      - xorg-x11-drv-nvidia-cuda
+    state: present
+  become: true
+
+- name: Enable NVIDIA container toolkit COPR repository
+  ansible.builtin.command:
+    cmd: dnf copr enable -y @ai-ml/nvidia-container-toolkit
+  args:
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:ai-ml:nvidia-container-toolkit.repo
+  become: true
+
+- name: Install NVIDIA container toolkit packages
+  ansible.builtin.dnf:
+    name:
+      - nvidia-container-toolkit
+      - nvidia-container-toolkit-selinux
+    state: present
+  become: true
+
+- name: Generate NVIDIA CDI configuration
+  ansible.builtin.command:
+    cmd: nvidia-ctk cdi generate --output /etc/cdi/nvidia.yaml
+  args:
+    creates: /etc/cdi/nvidia.yaml
+  notify: Restart container runtime
