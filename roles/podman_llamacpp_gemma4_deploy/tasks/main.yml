@@ -1,0 +1,34 @@
+---
+- name: Ensure model directory exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ ansible_facts.env.HOME }}/llamacpp/cache"
+    - "{{ ansible_facts.env.HOME }}/llamacpp/prompts"
+
+- name: Copy system promopt to model directory
+  ansible.builtin.copy:
+    src: templates/system.txt
+    dest: "{{ ansible_facts.env.HOME }}/llamacpp/prompts/system.txt"
+    mode: "0644"
+
+- name: Install container definition
+  ansible.builtin.template:
+    src: templates/llamacpp-gemma4.container.j2
+    dest: /etc/containers/systemd/llamacpp-gemma4.container
+    mode: "0644"
+  become: true
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+
+- name: Enable llama-gemma4
+  ansible.builtin.systemd:
+    name: llamacpp-gemma4.service
+    enabled: true
+    state: started
+  become: true

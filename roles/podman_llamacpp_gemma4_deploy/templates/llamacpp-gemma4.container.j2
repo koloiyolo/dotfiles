@@ -1,0 +1,30 @@
+[Unit]
+Description=llama.cpp Gemma4 Server
+After=network-online.target
+
+[Container]
+Image={{ podman_llamacpp_gemma4_deploy_image }}
+ContainerName=llamacpp-gemma4
+
+PublishPort=127.0.0.1:8080:8080
+
+AddDevice=nvidia.com/gpu=all
+
+Volume=/home/{{ ansible_user }}/llamacpp/cache:/root/.cache/huggingface:Z
+Volume=/home/{{ ansible_user }}/llamacpp/prompts:/prompts:Z
+
+Network=host
+
+Exec= \
+  -hf unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS \
+  -c {{ podman_llamacpp_gemma4_deploy_context_size }} \
+  -ngl {{ podman_llamacpp_gemma4_deploy_gpu_layers }} \
+  -t {{ podman_llamacpp_gemma4_deploy_threads }} \
+  --host 0.0.0.0 \
+  --port 8080
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
