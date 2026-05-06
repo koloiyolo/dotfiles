@@ -28,7 +28,7 @@
       - helix
       - tmux
       - tree
-      - -uv
+      - uv
     state: present
 
 # `rustup` from dnf doesn't work
