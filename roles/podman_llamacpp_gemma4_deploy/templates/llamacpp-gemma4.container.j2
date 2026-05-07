@@ -17,9 +17,11 @@ Network=host
 
 Exec= \
   -hf unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS \
-  -c {{ podman_llamacpp_gemma4_deploy_context_size }} \
-  -ngl {{ podman_llamacpp_gemma4_deploy_gpu_layers }} \
-  -t {{ podman_llamacpp_gemma4_deploy_threads }} \
+  --threads {{ podman_llamacpp_gemma4_deploy_threads }} \
+  --cpu-moe \
+  -np 1 \
+  --cache-type-k q8_0 \
+  --cache-type-v q8_0 \
   --host 0.0.0.0 \
   --port 8080
 
