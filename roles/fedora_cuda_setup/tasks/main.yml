@@ -27,3 +27,4 @@
   args:
     creates: /etc/cdi/nvidia.yaml
   notify: Restart container runtime
+  become: true

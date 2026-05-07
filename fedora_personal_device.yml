@@ -38,12 +38,6 @@
   roles:
     - zed_setup
 
-# - name: Setup Ollama
-#   hosts:
-#     - all
-#   roles:
-#     - ollama
-
 - name: Setup CUDA toolkit
   hosts:
     - llm
