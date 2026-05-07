@@ -20,6 +20,7 @@ Exec= \
   --threads {{ podman_llamacpp_gemma4_deploy_threads }} \
   --cpu-moe \
   -np 1 -c {{ podman_llamacpp_gemma4_deploy_context_size }} \
+  --reasoning-budget {{ podman_llamacpp_gemma4_deploy_reasoning_budget }} \
   --cache-type-k q8_0 \
   --cache-type-v q8_0 \
   --no-webui \
