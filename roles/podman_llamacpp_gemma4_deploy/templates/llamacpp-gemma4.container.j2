@@ -19,7 +19,7 @@ Exec= \
   -hf unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS \
   --threads {{ podman_llamacpp_gemma4_deploy_threads }} \
   --cpu-moe \
-  -np 1 \
+  -np 2 -c 98304 \
   --cache-type-k q8_0 \
   --cache-type-v q8_0 \
   --host 0.0.0.0 \
