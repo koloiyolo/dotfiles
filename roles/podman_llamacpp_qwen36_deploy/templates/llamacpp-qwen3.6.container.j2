@@ -1,0 +1,34 @@
+[Unit]
+Description=llama.cpp Qwen3.6 Server
+After=network-online.target
+
+[Container]
+Image={{ podman_llamacpp_qwen36_deploy_image }}
+ContainerName=llamacpp-qwen36
+
+PublishPort=127.0.0.1:8080:8080
+
+AddDevice=nvidia.com/gpu=all
+
+Volume=/home/{{ ansible_user }}/llamacpp/cache:/root/.cache/huggingface:Z
+Volume=/home/{{ ansible_user }}/llamacpp/prompts:/prompts:Z
+
+Network=host
+
+Exec= \
+  -hf {{ podman_llamacpp_qwen36_deploy_model }} \
+  --threads {{ podman_llamacpp_qwen36_deploy_threads }} \
+  --cpu-moe \
+  -np 1 -c {{ podman_llamacpp_qwen36_deploy_context_size }} \
+  --reasoning-budget {{ podman_llamacpp_qwen36_deploy_reasoning_budget }} \
+  --cache-type-k q8_0 \
+  --cache-type-v q8_0 \
+  --no-webui \
+  --host 0.0.0.0 \
+  --port 8080
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
