@@ -53,11 +53,25 @@
   // AI Settings
   "language_models": {
     "openai_compatible": {
-      "Gemma4 -- Llama.cpp": {
+      "Llama.cpp": {
         "api_url": "http://127.0.0.1:8080/v1",
         "available_models": [
           {
             "name": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
+            "max_tokens": 65536,
+            "max_output_tokens": 65536,
+            "max_completion_tokens": 65536,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": false,
+            },
+          },
+          {
+            "name": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S",
             "max_tokens": 65536,
             "max_output_tokens": 65536,
             "max_completion_tokens": 65536,
@@ -76,7 +90,7 @@
   },
   "edit_predictions": {
     "open_ai_compatible_api": {
-      "model": "\"unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS\"",
+      "model": "\"unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S\"",
       "api_url": "http://127.0.0.1:8080/v1",
     },
     "mode": "eager",
@@ -86,13 +100,18 @@
     "dock": "right",
     "sidebar_side": "right",
     "default_profile": "write",
+    "inline_assistant_use_streaming_tools": false,
     "default_model": {
-      "provider": "Gemma4 -- Llama.cpp",
-      "model": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
+      "provider": "Llama.cpp",
+      "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S",
     },
     "favorite_models": [
       {
-        "provider": "Gemma4 -- Llama.cpp",
+        "provider": "Llama.cpp",
+        "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S",
+      },
+      {
+        "provider": "Llama.cpp",
         "model": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
       },
     ],
