@@ -44,6 +44,12 @@
   roles:
     - fedora_cuda_setup
 
+- name: Setup Gemma4 podman container
+  hosts:
+    - llm
+  roles:
+    - podman_llamacpp_gemma4_deploy
+
 - name: Setup Qwen3.6 podman container
   hosts:
     - llm

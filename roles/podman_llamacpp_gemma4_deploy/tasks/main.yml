@@ -30,5 +30,5 @@
   ansible.builtin.systemd:
     name: llamacpp-gemma4.service
     enabled: true
-    state: stopped
+    state: restarted
   become: true
