@@ -58,9 +58,9 @@
         "available_models": [
           {
             "name": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
-            "max_tokens": 65536,
-            "max_output_tokens": 65536,
-            "max_completion_tokens": 65536,
+            "max_tokens": 49152,
+            "max_output_tokens": 49152,
+            "max_completion_tokens": 49152,
             "capabilities": {
               "tools": true,
               "images": false,
@@ -71,10 +71,10 @@
             },
           },
           {
-            "name": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S",
-            "max_tokens": 65536,
-            "max_output_tokens": 65536,
-            "max_completion_tokens": 65536,
+            "name": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS",
+            "max_tokens": 49152,
+            "max_output_tokens": 49152,
+            "max_completion_tokens": 49152,
             "capabilities": {
               "tools": true,
               "images": false,
@@ -90,7 +90,7 @@
   },
   "edit_predictions": {
     "open_ai_compatible_api": {
-      "model": "\"unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S\"",
+      "model": "\"unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS\"",
       "api_url": "http://127.0.0.1:8080/v1",
     },
     "mode": "eager",
@@ -103,12 +103,12 @@
     "inline_assistant_use_streaming_tools": false,
     "default_model": {
       "provider": "Llama.cpp",
-      "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S",
+      "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS",
     },
     "favorite_models": [
       {
         "provider": "Llama.cpp",
-        "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q4_K_S",
+        "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS",
       },
       {
         "provider": "Llama.cpp",
