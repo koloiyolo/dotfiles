@@ -57,7 +57,7 @@
         "api_url": "http://127.0.0.1:8080/v1",
         "available_models": [
           {
-            "name": "Gemma4 26B A4B",
+            "name": "llama.cpp",
             "max_tokens": 65536,
             "max_output_tokens": 65536,
             "max_completion_tokens": 65536,
@@ -76,7 +76,7 @@
   },
   "edit_predictions": {
     "open_ai_compatible_api": {
-      "model": "Gemma4 26B A4B",
+      "model": "Llama.cpp",
       "api_url": "http://127.0.0.1:8080/v1",
     },
     "mode": "eager",
@@ -100,12 +100,12 @@
     "inline_assistant_use_streaming_tools": false,
     "default_model": {
       "provider": "Llama.cpp",
-      "model": "Gemma4 26B A4B",
+      "model": "llama.cpp",
     },
     "favorite_models": [
       {
         "provider": "Llama.cpp",
-        "model": "Gemma4 26B A4B",
+        "model": "llama.cpp",
       },
     ],
     "model_parameters": [],

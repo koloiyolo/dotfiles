@@ -18,7 +18,7 @@ Network=host
 Exec= \
   -hf {{ podman_llamacpp_qwen36_deploy_model }} \
   --threads {{ podman_llamacpp_qwen36_deploy_threads }} \
-  --cpu-moe \
+  --cpu-moe -ngl 20 \
   -np 1 -c {{ podman_llamacpp_qwen36_deploy_context_size }} \
   --reasoning-budget {{ podman_llamacpp_qwen36_deploy_reasoning_budget }} \
   --cache-type-k q8_0 \
