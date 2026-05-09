@@ -57,24 +57,10 @@
         "api_url": "http://127.0.0.1:8080/v1",
         "available_models": [
           {
-            "name": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
+            "name": "Gemma4 26B A4B",
             "max_tokens": 65536,
             "max_output_tokens": 65536,
             "max_completion_tokens": 65536,
-            "capabilities": {
-              "tools": true,
-              "images": false,
-              "parallel_tool_calls": true,
-              "prompt_cache_key": true,
-              "chat_completions": true,
-              "interleaved_reasoning": false,
-            },
-          },
-          {
-            "name": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS",
-            "max_tokens": 49152,
-            "max_output_tokens": 49152,
-            "max_completion_tokens": 49152,
             "capabilities": {
               "tools": true,
               "images": false,
@@ -90,29 +76,36 @@
   },
   "edit_predictions": {
     "open_ai_compatible_api": {
-      "model": "\"unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS\"",
+      "model": "Gemma4 26B A4B",
       "api_url": "http://127.0.0.1:8080/v1",
     },
     "mode": "eager",
     "provider": "open_ai_compatible_api",
   },
   "agent": {
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "^git\\s+diff(\\s|$)",
+            },
+          ],
+        },
+      },
+    },
     "dock": "right",
     "sidebar_side": "right",
     "default_profile": "write",
     "inline_assistant_use_streaming_tools": false,
     "default_model": {
       "provider": "Llama.cpp",
-      "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS",
+      "model": "Gemma4 26B A4B",
     },
     "favorite_models": [
       {
         "provider": "Llama.cpp",
-        "model": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-IQ4_XS",
-      },
-      {
-        "provider": "Llama.cpp",
-        "model": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
+        "model": "Gemma4 26B A4B",
       },
     ],
     "model_parameters": [],
