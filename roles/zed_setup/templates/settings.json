@@ -58,9 +58,9 @@
         "available_models": [
           {
             "name": "unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS",
-            "max_tokens": 49152,
-            "max_output_tokens": 49152,
-            "max_completion_tokens": 49152,
+            "max_tokens": 65536,
+            "max_output_tokens": 65536,
+            "max_completion_tokens": 65536,
             "capabilities": {
               "tools": true,
               "images": false,
