@@ -1,6 +1,6 @@
-podman_llamacpp_gemma4_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13
+podman_llamacpp_gemma4_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b9174
 podman_llamacpp_gemma4_deploy_container: gemma4
 podman_llamacpp_gemma4_deploy_model: unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS
 podman_llamacpp_gemma4_deploy_context_size: 65536
-podman_llamacpp_gemma4_deploy_reasoning_budget: "{{ podman_llamacpp_gemma4_deploy_context_size | int // 32 }}"
-podman_llamacpp_gemma4_deploy_threads: "{{ ansible_processor_cores }}"
+podman_llamacpp_gemma4_deploy_reasoning_budget: "{{ podman_llamacpp_gemma4_deploy_context_size | int // 64 }}"
+podman_llamacpp_gemma4_deploy_threads: "{{ ansible_facts['processor_cores'] }}"
