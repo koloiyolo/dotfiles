@@ -99,6 +99,9 @@
             {
               "pattern": "^git\\s+diff(\\s|$)",
             },
+            {
+              "pattern": "^cargo\\s+clippy(\\s|$)",
+            },
           ],
         },
       },
