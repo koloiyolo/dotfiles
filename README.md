@@ -13,7 +13,7 @@ My typical modern development setup for Python and Rust.
 - `zsh`: A modern shell with good defaults and powerful customization options.
 - `nvim`: A highly configurable and extensible text editor.
 - `zed`: A lightning-fast, code editor built for modern development workflows, with seamless AI integration.
-- `ollama`: For local LLM models and tweaking.
+- `llama.cpp`: For local LLM models and tweaking.
 
 And many more Rust replacements for common Linux tools...
 

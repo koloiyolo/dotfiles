@@ -29,6 +29,7 @@
       - tmux
       - tree
       - uv
+      - wireshark
     state: present
 
 # `rustup` from dnf doesn't work
