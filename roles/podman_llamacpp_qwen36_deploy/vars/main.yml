@@ -1,4 +1,4 @@
-podman_llamacpp_qwen36_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b9174
+podman_llamacpp_qwen36_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b9181
 podman_llamacpp_qwen36_deploy_container: qwen36
 podman_llamacpp_qwen36_deploy_model: unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_XS
 podman_llamacpp_qwen36_deploy_context_size: 49152
