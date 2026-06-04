@@ -8,7 +8,7 @@
     - "{{ ansible_facts.env.HOME }}/llamacpp/cache"
     - "{{ ansible_facts.env.HOME }}/llamacpp/prompts"
 
-- name: Copy system promopt to model directory
+- name: Copy system prompt to model directory
   ansible.builtin.copy:
     src: templates/system.txt
     dest: "{{ ansible_facts.env.HOME }}/llamacpp/prompts/system.txt"
@@ -16,25 +16,21 @@
 
 - name: Install container definitions
   ansible.builtin.template:
-    src: templates/{{ item }}.container.j2
-    dest: /etc/containers/systemd/{{ item }}.container
+    src: templates/llamacpp.container.j2
+    dest: /etc/containers/systemd/{{ item.container }}.container
     mode: "0644"
   become: true
-  loop:
-    - "{{ podman_llamacpp_deploy_gemma4_container }}"
-    - "{{ podman_llamacpp_deploy_qwen36_container }}"
+  loop: "{{ podman_llamacpp_deploy_models }}"
 
 - name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: true
   become: true
 
-- name: Enable llammacpp containers
+- name: Enable llamacpp containers
   ansible.builtin.systemd:
-    name: "{{ item }}.service"
+    name: "{{ item.container }}.service"
     enabled: true
     state: stopped
   become: true
-  loop:
-    - "{{ podman_llamacpp_deploy_gemma4_container }}"
-    - "{{ podman_llamacpp_deploy_qwen36_container }}"
+  loop: "{{ podman_llamacpp_deploy_models }}"
