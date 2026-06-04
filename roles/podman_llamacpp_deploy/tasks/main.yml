@@ -14,21 +14,27 @@
     dest: "{{ ansible_facts.env.HOME }}/llamacpp/prompts/system.txt"
     mode: "0644"
 
-- name: Install container definition
+- name: Install container definitions
   ansible.builtin.template:
-    src: templates/llamacpp-gemma4.container.j2
-    dest: /etc/containers/systemd/llamacpp-gemma4.container
+    src: templates/{{ item }}.container.j2
+    dest: /etc/containers/systemd/{{ item }}.container
     mode: "0644"
   become: true
+  loop:
+    - "{{ podman_llamacpp_deploy_gemma4_container }}"
+    - "{{ podman_llamacpp_deploy_qwen36_container }}"
 
 - name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: true
   become: true
 
-- name: Enable llama-gemma4
+- name: Enable llammacpp containers
   ansible.builtin.systemd:
-    name: llamacpp-gemma4.service
+    name: "{{ item }}.service"
     enabled: true
     state: stopped
   become: true
+  loop:
+    - "{{ podman_llamacpp_deploy_gemma4_container }}"
+    - "{{ podman_llamacpp_deploy_qwen36_container }}"
