@@ -1,10 +1,10 @@
 [Unit]
-Description=llama.cpp Qwen3.6 Server
+Description=llama.cpp {{ podman_llamacpp_deploy_qwen36_container }} Server
 After=network-online.target
 
 [Container]
-Image={{ podman_llamacpp_qwen36_deploy_image }}
-ContainerName=llamacpp-qwen36
+Image={{ podman_llamacpp_deploy_image }}
+ContainerName={{ podman_llamacpp_deploy_qwen36_container }}
 
 PublishPort=127.0.0.1:8080:8080
 
@@ -16,11 +16,11 @@ Volume=/home/{{ ansible_user }}/llamacpp/prompts:/prompts:Z
 Network=host
 
 Exec= \
-  -hf {{ podman_llamacpp_qwen36_deploy_model }} \
-  --threads {{ podman_llamacpp_qwen36_deploy_threads }} \
+  -hf {{ podman_llamacpp_deploy_qwen36_model }} \
+  --threads {{ podman_llamacpp_deploy_threads }} \
   --cpu-moe -ngl 20 \
-  -np 1 -c {{ podman_llamacpp_qwen36_deploy_context_size }} \
-  --reasoning-budget {{ podman_llamacpp_qwen36_deploy_reasoning_budget }} \
+  -np 1 -c {{ podman_llamacpp_deploy_qwen36_context_size }} \
+  --reasoning-budget {{ podman_llamacpp_deploy_qwen36_reasoning_budget }} \
   --cache-type-k q8_0 \
   --cache-type-v q8_0 \
   --temperature 0.60 \
@@ -29,7 +29,7 @@ Exec= \
   --min-p 0.75 \
   --presence-penalty 1.5 \
   --repeat-penalty 1.0 \
-  --spec-type draft-mtp  --spec-draft-n-max 4 \
+  --spec-type ngram-simple \
   --webui \
   --host 0.0.0.0 \
   --port 8080
