@@ -1,10 +1,10 @@
 [Unit]
-Description=llama.cpp {{ podman_llamacpp_deploy_gemma4_container }} server
+Description=llama.cpp {{ item.container }} server
 After=network-online.target
 
 [Container]
 Image={{ podman_llamacpp_deploy_image }}
-ContainerName={{ podman_llamacpp_deploy_gemma4_container }}
+ContainerName={{ item.container }}
 
 PublishPort=127.0.0.1:8080:8080
 
@@ -16,19 +16,17 @@ Volume=/home/{{ ansible_user }}/llamacpp/prompts:/prompts:Z
 Network=host
 
 Exec= \
-  -hf {{ podman_llamacpp_deploy_gemma4_model }} \
+  -hf {{ item.model }} \
   --threads {{ podman_llamacpp_deploy_threads }} \
-  --cpu-moe --no-mmproj-offload -ngl 20 \
-  -np 1 -c {{ podman_llamacpp_deploy_gemma4_context_size }} \
-  --reasoning-budget {{ podman_llamacpp_deploy_gemma4_reasoning_budget }} \
+  {{ item.extra_flags | default('') }} -ngl 20 \
+  -np 1 -c {{ item.context_size }} \
+  --reasoning-budget {{ item.reasoning_budget }} \
   --cache-type-k q8_0 \
   --cache-type-v q8_0 \
-  --temperature 1.0 \
+  --temperature {{ item.temperature }} \
   --top-p 0.95 \
-  --top-k 64 \
-  --min-p 0.0 \
-  --presence-penalty 1.5 \
-  --repeat-penalty 1.0 \
+  --top-k {{ item.top_k }} \
+  --min-p {{ item.min_p }} \
   --spec-type ngram-simple \
   --webui \
   --host 0.0.0.0 \

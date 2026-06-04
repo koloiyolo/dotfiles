@@ -1,14 +1,22 @@
 podman_llamacpp_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b9501
 podman_llamacpp_deploy_threads: "{{ ansible_facts['processor_cores'] }}"
 
-# gemma4 settings
-podman_llamacpp_deploy_gemma4_container: gemma4
-podman_llamacpp_deploy_gemma4_model: unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS
-podman_llamacpp_deploy_gemma4_context_size: 65536
-podman_llamacpp_deploy_gemma4_reasoning_budget: "{{ podman_llamacpp_deploy_gemma4_context_size | int // 64 }}"
-
-# qwen3.6 settings
-podman_llamacpp_deploy_qwen36_container: qwen3.6
-podman_llamacpp_deploy_qwen36_model: unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_XS
-podman_llamacpp_deploy_qwen36_context_size: 49152
-podman_llamacpp_deploy_qwen36_reasoning_budget: "{{ podman_llamacpp_deploy_qwen36_context_size | int // 64 }}"
+podman_llamacpp_deploy_models:
+  - name: gemma4
+    container: gemma4
+    model: unsloth/gemma-4-26B-A4B-it-GGUF:UD-IQ4_XS
+    context_size: 65536
+    reasoning_budget: "{{ (65536 | int) // 64 }}"
+    temperature: 1.0
+    top_k: 64
+    min_p: 0.0
+    extra_flags: "--cpu-moe --no-mmproj-offload"
+  - name: qwen36
+    container: "qwen3.6"
+    model: unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_XS
+    context_size: 49152
+    reasoning_budget: "{{ (49152 | int) // 64 }}"
+    temperature: 0.80
+    top_k: 20
+    min_p: 0.75
+    extra_flags: "--cpu-moe"
