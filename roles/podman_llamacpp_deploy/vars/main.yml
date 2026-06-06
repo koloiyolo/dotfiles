@@ -10,7 +10,7 @@ podman_llamacpp_deploy_models:
     temperature: 1.0
     top_k: 64
     min_p: 0.0
-    extra_flags: "-ngl 30 --cpu-moe"
+    extra_flags: "--cpu-moe"
   - name: gemma4-2b
     container: gemma4-2b
     model: unsloth/gemma-4-E2B-it-qat-GGUF:UD-Q4_K_XL
@@ -27,4 +27,4 @@ podman_llamacpp_deploy_models:
     temperature: 0.80
     top_k: 20
     min_p: 0.75
-    extra_flags: "-ngl 40 --cpu-moe"
+    extra_flags: "--cpu-moe"
