@@ -21,7 +21,7 @@ podman_llamacpp_deploy_models:
     min_p: 0.0
   - name: qwen36
     container: "qwen3.6"
-    model: unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-IQ4_XS
+    model: unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_M
     context_size: 65536
     reasoning_budget: "{{ (65536 | int) // 64 }}"
     temperature: 0.80
