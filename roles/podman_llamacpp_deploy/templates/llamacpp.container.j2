@@ -28,6 +28,7 @@ Exec= \
   --top-k {{ item.top_k }} \
   --min-p {{ item.min_p }} \
   --spec-type ngram-simple \
+  --no-mmproj-offload \
   --webui \
   --host 0.0.0.0 \
   --port 8080
