@@ -17,8 +17,8 @@ Network=host
 
 Exec= \
   -hf {{ item.model }} \
+  {{ item.extra_flags | default('') }} \
   --threads {{ podman_llamacpp_deploy_threads }} \
-  {{ item.extra_flags | default('') }} -ngl 20 \
   -np 1 -c {{ item.context_size }} \
   --reasoning-budget {{ item.reasoning_budget }} \
   --cache-type-k q8_0 \
