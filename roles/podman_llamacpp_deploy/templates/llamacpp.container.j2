@@ -1,10 +1,10 @@
 [Unit]
-Description=llama.cpp {{ item.container }} server
+Description=llama.cpp {{ item.name }} server
 After=network-online.target
 
 [Container]
 Image={{ podman_llamacpp_deploy_image }}
-ContainerName={{ item.container }}
+ContainerName={{ item.name }}
 
 PublishPort=127.0.0.1:8080:8080
 
@@ -19,8 +19,8 @@ Exec= \
   -hf {{ item.model }} \
   {{ item.extra_flags | default('') }} \
   --threads {{ podman_llamacpp_deploy_threads }} \
-  -np 1 -c {{ item.context_size }} \
-  --reasoning-budget {{ item.reasoning_budget }} \
+  -np 1 -c {{ podman_llamacpp_deploy_context_size }} \
+  --reasoning-budget {{ podman_llamacpp_deploy_reasoning_budget }} \
   --cache-type-k q8_0 \
   --cache-type-v q8_0 \
   --temperature {{ item.temperature }} \

@@ -17,7 +17,7 @@
 - name: Install container definitions
   ansible.builtin.template:
     src: templates/llamacpp.container.j2
-    dest: /etc/containers/systemd/{{ item.container }}.container
+    dest: /etc/containers/systemd/{{ item.name }}.container
     mode: "0644"
   become: true
   loop: "{{ podman_llamacpp_deploy_models }}"
@@ -29,7 +29,7 @@
 
 - name: Enable llamacpp containers
   ansible.builtin.systemd:
-    name: "{{ item.container }}.service"
+    name: "{{ item.name }}.service"
     enabled: true
     state: stopped
   become: true
