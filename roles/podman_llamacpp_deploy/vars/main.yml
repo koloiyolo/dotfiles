@@ -1,4 +1,4 @@
-podman_llamacpp_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b9843
+podman_llamacpp_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b10108
 podman_llamacpp_deploy_threads: "{{ (ansible_facts['processor_cores'] | int) - 1 }}"
 podman_llamacpp_deploy_context_size: 65536
 podman_llamacpp_deploy_reasoning_budget: "{{ (podman_llamacpp_deploy_context_size | int) // 64 }}"

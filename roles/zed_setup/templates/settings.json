@@ -102,6 +102,9 @@
             {
               "pattern": "^cargo\\s+clippy(\\s|$)",
             },
+            {
+              "pattern": "^tree(\\s|$)",
+            },
           ],
         },
       },
