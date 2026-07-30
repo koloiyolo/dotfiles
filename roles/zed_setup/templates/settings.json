@@ -1,65 +1,63 @@
 {
   "outline_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "git_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "project_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "tasks": {
-    "enabled": true,
+    "enabled": true
   },
   "toolbar": {
-    "code_actions": true,
+    "code_actions": true
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false,
+    "metrics": false
   },
   "vim_mode": false,
   "preview_tabs": {
-    "enable_preview_multibuffer_from_code_navigation": true,
+    "enable_preview_multibuffer_from_code_navigation": true
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 500,
-    },
+      "milliseconds": 500
+    }
   },
-  // Programming Language settings
   "languages": {
     "Python": {
       "tab_size": 4,
       "preferred_line_length": 88,
       "format_on_save": "on",
       "soft_wrap": "prefer_line",
-      "language_servers": ["ty", "ruff"],
+      "language_servers": ["ty", "ruff"]
     },
     "Rust": {
       "tab_size": 4,
       "preferred_line_length": 88,
       "format_on_save": "on",
       "soft_wrap": "prefer_line",
-      "language_servers": ["rust-analyzer"],
+      "language_servers": ["rust-analyzer"]
     },
     "JSON": {
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "YAML": {
-      "format_on_save": "on",
-    },
+      "format_on_save": "on"
+    }
   },
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
         "check": {
-          "command": "clippy",
-        },
-      },
-    },
+          "command": "clippy"
+        }
+      }
+    }
   },
-  // AI Settings
   "language_models": {
     "openai_compatible": {
       "Llama.cpp": {
@@ -76,20 +74,20 @@
               "parallel_tool_calls": true,
               "prompt_cache_key": true,
               "chat_completions": true,
-              "interleaved_reasoning": false,
-            },
-          },
-        ],
-      },
-    },
+              "interleaved_reasoning": false
+            }
+          }
+        ]
+      }
+    }
   },
   "edit_predictions": {
     "open_ai_compatible_api": {
       "model": "Llama.cpp",
-      "api_url": "http://127.0.0.1:8080/v1",
+      "api_url": "http://127.0.0.1:8080/v1"
     },
     "mode": "eager",
-    "provider": "open_ai_compatible_api",
+    "provider": "open_ai_compatible_api"
   },
   "agent": {
     "tool_permissions": {
@@ -97,17 +95,17 @@
         "terminal": {
           "always_allow": [
             {
-              "pattern": "^git\\s+diff(\\s|$)",
+              "pattern": "^git\\s+diff(\\s|$)"
             },
             {
-              "pattern": "^cargo\\s+clippy(\\s|$)",
+              "pattern": "^cargo\\s+clippy(\\s|$)"
             },
             {
-              "pattern": "^tree(\\s|$)",
-            },
-          ],
-        },
-      },
+              "pattern": "^tree(\\s|$)"
+            }
+          ]
+        }
+      }
     },
     "dock": "right",
     "sidebar_side": "right",
@@ -115,14 +113,14 @@
     "inline_assistant_use_streaming_tools": false,
     "default_model": {
       "provider": "Llama.cpp",
-      "model": "llama.cpp",
+      "model": "llama.cpp"
     },
     "favorite_models": [
       {
         "provider": "Llama.cpp",
-        "model": "llama.cpp",
-      },
+        "model": "llama.cpp"
+      }
     ],
-    "model_parameters": [],
-  },
+    "model_parameters": []
+  }
 }

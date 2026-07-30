@@ -2,3 +2,5 @@ docker_grafana_setup_grafana_container: grafana
 docker_grafana_setup_loki_container: loki
 docker_grafana_setup_mimir_container: mimir
 docker_grafana_setup_network: grafana_network
+
+docker_grafana_setup_retention_period: 744h # 31 days
