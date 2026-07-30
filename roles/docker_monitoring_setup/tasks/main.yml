@@ -34,6 +34,7 @@
     ports:
       - "{{ docker_monitoring_setup_cadvisor_port }}:8080"
     volumes:
+      - /etc/machine-id:/etc/machine-id:ro
       - /:/rootfs:ro
       - /var/run:/var/run:ro
       - /sys:/sys:ro
