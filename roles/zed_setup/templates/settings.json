@@ -58,22 +58,38 @@
       }
     }
   },
+  "language_models": {
+    "openai_compatible": {
+      "Llama.cpp": {
+        "api_url": "http://127.0.0.1:8080/v1",
+        "available_models": [
+          {
+            "name": "llama.cpp",
+            "max_tokens": 65536,
+            "max_output_tokens": 65536,
+            "max_completion_tokens": 65536,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": false
+            }
+          }
+        ]
+      }
+    }
+  },
   "edit_predictions": {
     "open_ai_compatible_api": {
-      "model": "llama.cpp",
+      "model": "Llama.cpp",
       "api_url": "http://127.0.0.1:8080/v1"
     },
     "mode": "eager",
     "provider": "open_ai_compatible_api"
   },
   "agent": {
-    "favorite_models": [
-      {
-        "provider": "llama.cpp",
-        "model": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_M",
-        "enable_thinking": true
-      }
-    ],
     "tool_permissions": {
       "tools": {
         "terminal": {
@@ -95,6 +111,16 @@
     "sidebar_side": "right",
     "default_profile": "write",
     "inline_assistant_use_streaming_tools": false,
+    "default_model": {
+      "provider": "Llama.cpp",
+      "model": "llama.cpp"
+    },
+    "favorite_models": [
+      {
+        "provider": "Llama.cpp",
+        "model": "llama.cpp"
+      }
+    ],
     "model_parameters": []
   }
 }
