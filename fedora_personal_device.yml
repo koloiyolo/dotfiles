@@ -37,15 +37,3 @@
     - desktop
   roles:
     - zed_setup
-
-- name: Setup CUDA toolkit
-  hosts:
-    - llm
-  roles:
-    - fedora_cuda_setup
-
-- name: Setup LLM podman containers
-  hosts:
-    - llm
-  roles:
-    - podman_llamacpp_deploy

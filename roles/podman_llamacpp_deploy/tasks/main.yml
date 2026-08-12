@@ -8,11 +8,16 @@
     - "{{ ansible_facts.env.HOME }}/llamacpp/cache"
     - "{{ ansible_facts.env.HOME }}/llamacpp/prompts"
 
-- name: Copy system prompt to model directory
-  ansible.builtin.copy:
-    src: templates/system.txt
-    dest: "{{ ansible_facts.env.HOME }}/llamacpp/prompts/system.txt"
-    mode: "0644"
+- name: Discover GPU VRAM
+  ansible.builtin.command:
+    cmd: nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits
+  register: podman_llamacpp_deploy_nvidia_vram
+  changed_when: false
+
+- name: Set llama.cpp context size based on VRAM
+  ansible.builtin.set_fact:
+    podman_llamacpp_deploy_context_size: >-
+      {{ 32768 if (podman_llamacpp_deploy_nvidia_vram.stdout | int) < 4096 else 49152 }}
 
 - name: Install container definitions
   ansible.builtin.template:
@@ -30,7 +35,7 @@
 - name: Disable llamacpp containers
   ansible.builtin.systemd:
     name: "{{ item.name }}.service"
-    enabled: false
+    enabled: true
     state: stopped
   become: true
   loop: "{{ podman_llamacpp_deploy_models }}"
