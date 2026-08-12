@@ -1,24 +1,29 @@
 podman_llamacpp_deploy_image: ghcr.io/ggml-org/llama.cpp:server-cuda13-b10156
 podman_llamacpp_deploy_threads: "{{ (ansible_facts['processor_cores'] | int) - 1 }}"
-podman_llamacpp_deploy_context_size: 65536
 podman_llamacpp_deploy_reasoning_budget: "{{ (podman_llamacpp_deploy_context_size | int) // 64 }}"
 
 podman_llamacpp_deploy_models:
   - name: gemma4
     model: unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL
+    spec_type: "ngram-simple,draft-mtp"
     temperature: 1.0
     top_k: 64
     min_p: 0.0
-    extra_flags: "--cpu-moe"
+    extra_flags: "--cpu-moe \
+      --spec-draft-n-max 2 \
+      --spec-draft-ngl all"
   - name: gemma4-2b
     model: unsloth/gemma-4-E2B-it-qat-GGUF:UD-Q4_K_XL
+    spec_type: "ngram-simple,draft-mtp"
     temperature: 1.0
     top_k: 64
     min_p: 0.0
   - name: qwen36
-    container: "qwen3.6"
     model: unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_M
+    spec_type: "ngram-simple,draft-mtp"
     temperature: 0.80
     top_k: 20
     min_p: 0.75
-    extra_flags: "--cpu-moe"
+    extra_flags: "--cpu-moe \
+      --spec-draft-n-max 2 \
+      --spec-draft-ngl all"
