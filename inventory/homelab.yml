@@ -16,6 +16,10 @@ all:
       ansible_host: "{{ ip_prefix }}.100"
       ansible_user: "{{ default_user }}"
 
+    nixtest:
+      ansible_host: "{{ ip_prefix }}.101"
+      ansible_user: "{{ default_user }}"
+
     postgresql:
       ansible_host: "{{ ip_prefix }}.110"
       ansible_user: "{{ default_user }}"
@@ -36,6 +40,7 @@ debian:
     grafana:
     pihole:
     tailscale_node:
+    nixtest:
 
 server:
   hosts:
@@ -45,6 +50,7 @@ server:
     grafana:
     pihole:
     tailscale_node:
+    nixtest:
 
 proxmox:
   hosts:
@@ -55,3 +61,6 @@ host:
   hosts:
     host01:
     host02:
+
+nixtest:
+  nixtest:

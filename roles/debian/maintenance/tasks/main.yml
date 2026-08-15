@@ -15,17 +15,23 @@
   ansible.builtin.apt:
     name:
       - sudo
-      - fzf
-      - git
       - curl
-      - rustup
-      - zoxide
       - fish
+    state: present
+
+- name: Ensure nix managed packages are removed
+  ansible.builtin.apt:
+    name:
+      - fzf
+      - fastfetch
+      - git
+      - ruff
+      - zoxide
       - ripgrep
       - clangd
-      - build-essential
-      - libssl-dev
-      - hx
+      - helix
       - tmux
       - tree
-    state: present
+      - uv
+      - wireshark
+    state: absent

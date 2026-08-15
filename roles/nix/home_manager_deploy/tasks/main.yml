@@ -1,0 +1,10 @@
+---
+- name: Copy home-manager home.nix file to the target directory
+  ansible.builtin.template:
+    src: home.nix
+    dest: "{{ ansible_facts.env.HOME }}/.config/home-manager/home.nix"
+    mode: "0655"
+
+- name: Home-manager configuration rebuild
+  ansible.builtin.command: "{{ ansible_facts.env.HOME }}/.nix-profile/bin/home-manager switch"
+  changed_when: true

@@ -1,0 +1,25 @@
+---
+- name: Check whether home-manager is already installed
+  ansible.builtin.command:
+    cmd: "{{ ansible_facts.env.HOME }}/.nix-profile/bin/home-manager  --version"
+  failed_when: false
+  changed_when: false
+  register: home_manager_install_installed
+
+- name: Enable home-manager channel
+  ansible.builtin.command:
+    cmd: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+  when: home_manager_installed.rc != 0
+  changed_when: true
+
+- name: Update Nix channels
+  ansible.builtin.command:
+    cmd: nix-channel --update
+  when: home_manager_install_installed.rc != 0
+  changed_when: true
+
+- name: Install home-manager
+  ansible.builtin.command:
+    cmd: nix-shell '<home-manager>' -A install
+  when: home_manager_install_installed.rc != 0
+  changed_when: true

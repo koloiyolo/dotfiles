@@ -1,18 +1,23 @@
 ---
-- name: Ensure Rust toolchain is installed
-  ansible.builtin.command: rustup default stable
-  changed_when: true
+# - name: Ensure Rust toolchain is installed
+#   ansible.builtin.command: rustup default stable
+#   changed_when: true
 
-- name: Ensure Rust toolchain is updated
-  ansible.builtin.command: rustup update
-  changed_when: true
+# - name: Ensure Rust toolchain is updated
+#   ansible.builtin.command: rustup update
+#   changed_when: true
 
-- name: Install cargo packages
-  community.general.cargo:
-    name:
-      - bat
-      - eza
-      - ripgrep
-      - du-dust
-      - hyperfine
-    state: present
+# - name: Install cargo packages
+#   community.general.cargo:
+#     name:
+#       - bat
+#       - eza
+#       - ripgrep
+#       - du-dust
+#       - hyperfine
+#     state: present
+- name: Remove cargo packages
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.cargo/bin/"
+    state: absent
+    force: true
