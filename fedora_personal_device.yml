@@ -11,7 +11,7 @@
   hosts:
     - fedora
   roles:
-    - role: fedora/nix_setup
+    - role: fedora/nix_install
 
 - name: Install cargo packages
   hosts:
@@ -43,3 +43,17 @@
     - desktop
   roles:
     - zed_setup
+
+- name: Setup home-manager
+  hosts:
+    - all
+  roles:
+    - nix/home_manager_install
+  ignore_unreachable: true
+
+- name: Deploy home via home-manager
+  hosts:
+    - all
+  roles:
+    - nix/home_manager_deploy
+  ignore_unreachable: true

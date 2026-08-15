@@ -7,14 +7,6 @@
     - debian/maintenance
   ignore_unreachable: true
 
-- name: Setup Nix package manager
-  hosts:
-    - debian
-  become: true
-  roles:
-    - nix/setup
-  ignore_unreachable: true
-
 - name: Perform Proxmox maintenance task
   hosts:
     - proxmox
@@ -53,8 +45,24 @@
   roles:
     - helix_setup
 
-- name: Install cargo packages
+- name: Setup Nix package manager
   hosts:
-    - server
+    - debian
+  become: true
   roles:
-    - cargo_maintenance
+    - nix/install
+  ignore_unreachable: true
+
+- name: Setup home-manager
+  hosts:
+    - all
+  roles:
+    - nix/home_manager_install
+  ignore_unreachable: true
+
+- name: Deploy home via home-manager
+  hosts:
+    - all
+  roles:
+    - nix/home_manager_deploy
+  ignore_unreachable: true

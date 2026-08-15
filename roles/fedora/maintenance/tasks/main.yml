@@ -15,14 +15,18 @@
   ansible.builtin.dnf:
     name:
       - sudo
+      - curl
+      - dnf-plugins-core
+    state: present
+
+- name: Ensure nix managed packages are removed
+  ansible.builtin.dnf:
+    name:
       - fzf
       - fastfetch
       - git
-      - curl
-      - dnf-plugins-core
       - ruff
       - zoxide
-      - fish
       - ripgrep
       - clangd
       - helix
@@ -30,7 +34,8 @@
       - tree
       - uv
       - wireshark
-    state: present
+    state: absent
+    allowerasing: true
 
 # `rustup` from dnf doesn't work
 - name: Download rustup installer

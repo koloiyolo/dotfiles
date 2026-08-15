@@ -1,0 +1,37 @@
+---
+- name: Check whether Nix is already installed
+  ansible.builtin.stat:
+    path: /nix/var/nix/profiles/default/bin/nix
+  register: install_nix_installed
+
+- name: Download Nix installer
+  ansible.builtin.get_url:
+    url: "{{ install_installer_url }}"
+    dest: "{{ install_installer_path }}"
+    mode: "0755"
+  when: not install_nix_installed.stat.exists
+
+- name: Install Nix
+  ansible.builtin.command:
+    cmd: "{{ install_installer_path }} {{ install_args | join(' ') }}"
+  environment:
+    NIX_INSTALLER_NO_MODIFY_PROFILE: "1"
+  when: not install_nix_installed.stat.exists
+  changed_when: true
+
+- name: Remove Nix installer
+  ansible.builtin.file:
+    path: "{{ install_installer_path }}"
+    state: absent
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+
+- name: Enable nix daemon
+  ansible.builtin.systemd:
+    name: "nix-daemon.service"
+    enabled: true
+    state: started
+  become: true
