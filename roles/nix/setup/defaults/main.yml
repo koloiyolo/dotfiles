@@ -1,0 +1,6 @@
+nix_installer_url: "https://nixos.org/nix/install"
+nix_installer_path: "/tmp/nix-install"
+
+nix_install_args:
+  - "--daemon"
+  - "--yes"

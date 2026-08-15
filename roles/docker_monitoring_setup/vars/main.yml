@@ -1,7 +1,0 @@
-docker_monitoring_setup_alloy: alloy
-
-docker_monitoring_setup_cadvisor: cadvisor
-docker_monitoring_setup_cadvisor_port: 8888
-docker_monitoring_setup_cadvisor_image: gcr.io/cadvisor/cadvisor:latest
-
-docker_monitoring_setup_network: monitoring_network

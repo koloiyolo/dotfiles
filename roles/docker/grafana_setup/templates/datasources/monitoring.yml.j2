@@ -1,0 +1,10 @@
+apiVersion: 1
+
+datasources:
+  - name: Mimir
+    type: prometheus
+    url: "http://{{ grafana_setup_mimir_container }}:9009/prometheus"
+
+  - name: Loki
+    type: loki
+    url: "http://{{ grafana_setup_loki_container }}:3100"

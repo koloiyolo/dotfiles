@@ -1,0 +1,20 @@
+---
+- name: Ensure nix packages are downloaded
+  ansible.builtin.dnf:
+    name:
+      - nix
+      - nix-daemon
+    state: present
+  become: true
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
+
+- name: Enable nix daemon
+  ansible.builtin.systemd:
+    name: "nix-daemon.service"
+    enabled: true
+    state: started
+  become: true

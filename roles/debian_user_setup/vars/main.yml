@@ -1,2 +1,0 @@
-debian_user_setup_username: jakub
-debian_user_setup_public_key: "{{ lookup('file', 'roles/ssh_setup/templates/authorized_keys') }}"

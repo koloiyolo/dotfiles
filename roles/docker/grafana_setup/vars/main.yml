@@ -1,0 +1,6 @@
+grafana_setup_grafana_container: grafana
+grafana_setup_loki_container: loki
+grafana_setup_mimir_container: mimir
+grafana_setup_network: grafana_network
+
+grafana_setup_retention_period: 744h # 31 days

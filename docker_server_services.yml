@@ -3,16 +3,16 @@
   hosts:
     - grafana
   roles:
-    - docker_grafana_setup
+    - docker/grafana_setup
 
 - name: Setup PiHole
   hosts:
     - pihole
   roles:
-    - docker_pihole_setup
+    - docker/pihole_setup
 
 - name: Setup Postgres
   hosts:
     - postgresql
   roles:
-    - docker_postgres_setup
+    - docker/postgres_setup

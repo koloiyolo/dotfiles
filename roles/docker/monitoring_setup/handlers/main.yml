@@ -1,0 +1,6 @@
+---
+- name: Restart Alloy container
+  community.docker.docker_container:
+    name: "{{ monitoring_setup_alloy }}"
+    state: started
+    restart: true

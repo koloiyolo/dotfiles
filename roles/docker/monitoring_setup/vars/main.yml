@@ -1,0 +1,7 @@
+monitoring_setup_alloy: alloy
+
+monitoring_setup_cadvisor: cadvisor
+monitoring_setup_cadvisor_port: 8888
+monitoring_setup_cadvisor_image: gcr.io/cadvisor/cadvisor:latest
+
+monitoring_setup_network: monitoring_network
