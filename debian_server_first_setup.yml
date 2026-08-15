@@ -4,4 +4,4 @@
     - debian
   become: true
   roles:
-    - debian_user_setup
+    - debian/user_setup

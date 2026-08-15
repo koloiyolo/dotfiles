@@ -1,0 +1,61 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Install basic packages
+  ansible.builtin.apt:
+    name:
+      - sudo
+      - curl
+      - hx
+    state: present
+
+- name: Ensure user exists with home directory
+  ansible.builtin.user:
+    name: "{{ user_setup_username }}"
+    shell: /bin/bash
+    create_home: true
+
+- name: Add user to sudo group (Debian/Ubuntu)
+  ansible.builtin.user:
+    name: "{{ user_setup_username }}"
+    groups: sudo
+    append: true
+
+- name: Configure passwordless sudo for default user
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^{{ user_setup_username }}\s'
+    line: "{{ user_setup_username }} ALL=(ALL) NOPASSWD:ALL"
+  become: true
+
+- name: Create .ssh directory
+  ansible.builtin.file:
+    path: "/home/{{ user_setup_username }}/.ssh"
+    state: directory
+    owner: "{{ user_setup_username }}"
+    group: "{{ user_setup_username }}"
+    mode: "0700"
+
+- name: Add authorized key
+  ansible.posix.authorized_key:
+    user: "{{ user_setup_username }}"
+    state: present
+    key: "{{ user_setup_public_key }}"
+
+- name: Ensure correct permissions for authorized_keys
+  ansible.builtin.file:
+    path: "/home/{{ user_setup_username }}/.ssh/authorized_keys"
+    owner: "{{ user_setup_username }}"
+    group: "{{ user_setup_username }}"
+    mode: "0600"
+
+- name: Restart SSH
+  ansible.builtin.service:
+    name: ssh
+    state: restarted
+  become: true

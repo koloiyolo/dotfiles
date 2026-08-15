@@ -3,7 +3,7 @@
   hosts:
     - llm
   roles:
-    - fedora_cuda_setup
+    - fedora/cuda_setup
 
 - name: Setup LLM podman containers
   hosts:

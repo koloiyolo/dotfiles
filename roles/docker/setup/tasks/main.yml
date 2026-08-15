@@ -1,0 +1,35 @@
+---
+- name: Check if Docker is installed
+  ansible.builtin.command: docker --version
+  register: setup_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Get Docker install script
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: "755"
+  when: setup_check.rc != 0
+
+- name: Install Docker
+  become: true
+  ansible.builtin.command: sh /tmp/get-docker.sh
+  when: setup_check.rc != 0
+  changed_when: false
+
+- name: Add current user to Docker group
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups:
+      - docker
+    append: true
+  notify: Restart docker
+
+- name: Ensure docker is running
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started

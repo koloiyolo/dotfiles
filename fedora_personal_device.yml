@@ -4,8 +4,14 @@
     - fedora
   become: true
   roles:
-    - fedora_maintenance
+    - fedora/maintenance
   ignore_unreachable: true
+
+- name: Setup Nix package manager
+  hosts:
+    - fedora
+  roles:
+    - role: fedora/nix_setup
 
 - name: Install cargo packages
   hosts:
@@ -23,7 +29,7 @@
   hosts:
     - fedora
   roles:
-    - docker_setup
+    - docker/setup
   ignore_unreachable: true
 
 - name: Setup Helix

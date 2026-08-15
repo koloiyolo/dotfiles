@@ -4,4 +4,4 @@
   hosts:
     - tailscale_node
   roles:
-    - debian_tailscale_setup
+    - debian/tailscale_setup

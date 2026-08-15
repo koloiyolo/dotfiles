@@ -1,2 +1,0 @@
-docker_pihole_setup_pihole: pihole
-docker_pihole_setup_image: pihole/pihole:2026.04.1
