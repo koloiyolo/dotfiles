@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{  pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -37,11 +37,11 @@
     {% for package in home_manager_deploy_packages %}
     pkgs.{{ package }}
     {% endfor %}
-  ];
 
-  programs.cargo = {
-    enable = true;
-  };
+    {% for package in home_manager_deploy_packages_desktop | default([]) %}
+    pkgs.{{ package }}
+    {% endfor %}
+  ];
 
   programs.helix = {
     enable = true;
@@ -57,8 +57,20 @@
       "{{ alias }}" = "{{ cmd }}";
       {% endfor %}
     };
+
+    functions = {
+        envsource = ''
+          touch $argv
+          for line in (cat $argv | grep -v '^#')
+            set item (string split -m 1 '=' $line)
+            set -gx $item[1] $item[2]
+          end
+        '';
+      };
+
     shellInit = ''
       fish_add_path --path --move $HOME/.local/bin $HOME/.nix-profile/bin
+      envsource ~/.env
       zoxide init --cmd cd fish | source
     '';
   };

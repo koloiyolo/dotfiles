@@ -1,3 +1,5 @@
+home_manager_deploy_remove_garbage_older_than: 3d
+
 home_manager_deploy_packages:
   - bat
   - eza
@@ -10,11 +12,6 @@ home_manager_deploy_packages:
   - zoxide
   - tmux
   - tree
-  - uv
-  - ruff
-  - clang-tools
-  - wireshark
-  - ncspot
   - pipewire
 
 home_manager_deploy_fish_aliases:

@@ -9,7 +9,7 @@
 - name: Enable home-manager channel
   ansible.builtin.command:
     cmd: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-  when: home_manager_installed.rc != 0
+  when: home_manager_install_installed.rc != 0
   changed_when: true
 
 - name: Update Nix channels

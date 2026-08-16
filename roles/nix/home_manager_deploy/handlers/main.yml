@@ -1,0 +1,14 @@
+---
+- name: Home-manager configuration rebuild
+  ansible.builtin.command: "{{ ansible_facts.env.HOME }}/.nix-profile/bin/home-manager switch"
+  changed_when: true
+  notify: Nix collect garbage and delete
+
+- name: Nix collect garbage and delete
+  ansible.builtin.command: nix-collect-garbage --delete-older-than {{ home_manager_deploy_remove_garbage_older_than }}
+  changed_when: true
+  notify: Nix optimize store
+
+- name: Nix optimize store
+  ansible.builtin.command: nix-store --optimise
+  changed_when: true

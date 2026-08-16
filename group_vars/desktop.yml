@@ -1,0 +1,9 @@
+home_manager_deploy_packages_desktop:
+  - uv
+  - ruff
+  - rustup
+  - clang-tools
+  - wireshark
+  - ncspot
+  - nil
+  - nixd

@@ -31,12 +31,23 @@ uv run ansible-galaxy collection install -r requirements.yml
 
 ## Setup your machine
 
+### General shell setup
+
 1. Set `ansible_user` variable in `inventory/personal.ini` to your current username.
 2. Run ansible playbook:
 
 ```bash
 uv run ansible-playbook -i inventory/personal.ini fedora_personal_device.yml --ask-become-pass -v
 ```
+
+### Local LLM deployment via [llama.cpp] / [Podman]
+
+```bash
+uv run ansible-playbook -i inventory/personal.ini fedora_deploy_llm.yml --ask-become-pass -v
+```
+
+[llama.cpp]: https://github.com/ggml-org/llama.cpp
+[podman]: https://podman.io/
 
 ## Setup my homelab :D
 
@@ -71,3 +82,9 @@ uv sync
 
 uv run ansible-lint *.yml
 ```
+
+## Helpful Resources
+
+* [NixOS on Proxmox LXC]
+
+[NixOS on Proxmox LXC]: https://wiki.nixos.org/wiki/Proxmox_Virtual_Environment#LXC
