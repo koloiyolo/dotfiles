@@ -1,2 +1,2 @@
 pihole_setup_pihole: pihole
-pihole_setup_image: pihole/pihole:2026.04.1
+pihole_setup_image: pihole/pihole:2026.07.2

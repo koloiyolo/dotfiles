@@ -27,7 +27,6 @@
     name: "{{ pihole_setup_pihole }}"
     image: "{{ pihole_setup_image }}"
     state: started
-    network_mode: host
     restart_policy: always
     ports:
       # DNS Ports
