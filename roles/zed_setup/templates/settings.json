@@ -112,13 +112,22 @@
     "default_profile": "write",
     "inline_assistant_use_streaming_tools": false,
     "default_model": {
-      "provider": "Llama.cpp",
-      "model": "llama.cpp"
+      "effort": "xhigh",
+      "enable_thinking": true,
+      "provider": "openai-subscribed",
+      "model": "gpt-5.6-luna"
     },
     "favorite_models": [
       {
         "provider": "Llama.cpp",
-        "model": "llama.cpp"
+        "model": "llama.cpp",
+        "enable_thinking": false
+      },
+      {
+        "provider": "openai-subscribed",
+        "model": "gpt-5.6-luna",
+        "enable_thinking": true,
+        "effort": "xhigh"
       }
     ],
     "model_parameters": []

@@ -109,6 +109,7 @@
   home.sessionVariables = {
     EDITOR = "hx";
     ALSA_PLUGIN_DIR = "${pkgs.pipewire}/lib/alsa-lib";
+    SHELL = "${pkgs.fish}/bin/fish";
   };
 
   # Let Home Manager install and manage itself.
