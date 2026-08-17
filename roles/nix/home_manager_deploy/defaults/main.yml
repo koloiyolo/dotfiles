@@ -1,5 +1,21 @@
 home_manager_deploy_remove_garbage_older_than: 3d
 
+home_manager_deploy_fish_shell_path: "{{ ansible_facts.env.HOME }}/.nix-profile/bin/fish"
+
+home_manager_deploy_git_user_name: >-
+  {{ lookup(
+       'ansible.builtin.pipe',
+       'git config --global --get user.name',
+       errors='ignore'
+     ) | trim }}
+
+home_manager_deploy_git_user_email: >-
+  {{ lookup(
+       'ansible.builtin.pipe',
+       'git config --global --get user.email',
+       errors='ignore'
+     ) | trim }}
+
 home_manager_deploy_packages:
   - bat
   - eza
@@ -64,3 +80,6 @@ home_manager_deploy_fish_aliases:
   gsta: "git stash"
   gstp: "git stash pop"
   gstd: "git stash drop"
+
+  # nix aliases
+  nixdev: nix develop -c fish

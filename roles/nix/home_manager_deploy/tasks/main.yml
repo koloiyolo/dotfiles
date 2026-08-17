@@ -1,13 +1,12 @@
 ---
 - name: Copy home-manager home.nix file to the target directory
   ansible.builtin.template:
-    src: home.nix
-    dest: "{{ ansible_facts.env.HOME }}/.config/home-manager/home.nix"
+    src: "{{ item }}"
+    dest: "{{ ansible_facts.env.HOME }}/.config/home-manager/{{ item }}"
     mode: "0655"
+  loop:
+    - home.nix
+    - fish.nix
+    - helix.nix
+    - git.nix
   notify: Home-manager configuration rebuild
-
-- name: Ensure that Fish is the login shell (home-manager limitation)
-  become: true
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    shell: /usr/bin/fish

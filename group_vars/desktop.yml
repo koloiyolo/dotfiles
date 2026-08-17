@@ -7,3 +7,4 @@ home_manager_deploy_packages_desktop:
   - ncspot
   - nil
   - nixd
+  - nixfmt

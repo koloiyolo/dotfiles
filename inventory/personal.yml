@@ -1,0 +1,19 @@
+all:
+  vars:
+    ansible_connection: local
+    ansible_user: jakub
+
+  hosts:
+    dev_machine:
+
+fedora:
+  hosts:
+    dev_machine:
+
+desktop:
+  hosts:
+    dev_machine:
+
+llm:
+  hosts:
+    dev_machine:
