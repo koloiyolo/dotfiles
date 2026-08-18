@@ -1,4 +1,4 @@
-{  pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -34,13 +34,19 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    {% for package in home_manager_deploy_packages %}
-    pkgs.{{ package }}
-    {% endfor %}
-
-    {% for package in home_manager_deploy_packages_desktop | default([]) %}
-    pkgs.{{ package }}
-    {% endfor %}
+    pkgs.bat
+    pkgs.eza
+    pkgs.ripgrep
+    pkgs.dust
+    pkgs.hyperfine
+    pkgs.fzf
+    pkgs.fastfetch
+    pkgs.git
+    pkgs.zoxide
+    pkgs.tmux
+    pkgs.tree
+    pkgs.tcpdump
+    pkgs.tmux
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -76,7 +82,6 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
-    ALSA_PLUGIN_DIR = "${pkgs.pipewire}/lib/alsa-lib";
   };
 
   # Let Home Manager install and manage itself.

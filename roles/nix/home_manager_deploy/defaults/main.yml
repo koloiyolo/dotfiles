@@ -2,6 +2,16 @@ home_manager_deploy_remove_garbage_older_than: 3d
 
 home_manager_deploy_fish_shell_path: "{{ ansible_facts.env.HOME }}/.nix-profile/bin/fish"
 
+home_manager_deploy_files:
+  - src: base.nix
+  - src: fish.nix
+  - src: git.nix
+  - src: helix.nix
+  - src: dev_tools.nix
+
+  - src: base_home.nix
+    mv: home.nix
+
 home_manager_deploy_git_user_name: >-
   {{ lookup(
        'ansible.builtin.pipe',
@@ -15,71 +25,3 @@ home_manager_deploy_git_user_email: >-
        'git config --global --get user.email',
        errors='ignore'
      ) | trim }}
-
-home_manager_deploy_packages:
-  - bat
-  - eza
-  - ripgrep
-  - dust
-  - hyperfine
-  - fzf
-  - fastfetch
-  - git
-  - zoxide
-  - tmux
-  - tree
-  - pipewire
-
-home_manager_deploy_fish_aliases:
-  eza: "ls"
-  cat: "bat -p"
-  du: "dust"
-
-  # git aliases
-  g: "git"
-  gst: "git status"
-  gd: "git diff"
-  gdc: "git diff --cached"
-  gl: "git pull"
-  gup: "git pull --rebase"
-  gp: "git push --force-with-lease"
-  gc!: "git commit -v --amend"
-  gca: "git commit -v -a"
-  gca!: "git commit -v -a --amend"
-  gcm: "git commit -a -m"
-  gc: "git checkout"
-  gr: "git remote"
-  grv: "git remote -v"
-  grmv: "git remote rename"
-  grrm: "git remote remove"
-  grset: "git remote set-url"
-  grup: "git remote update"
-  grbi: "git rebase -i"
-  grbc: "git rebase --continue"
-  grba: "git rebase --abort"
-  gb: "git branch"
-  gba: "git branch -a"
-  gcount: "git shortlog -sn"
-  gcl: "git config --list"
-  gcp: "git cherry-pick"
-  glg: "git log --stat --max-count=10"
-  glgg: "git log --graph --max-count=10"
-  glgga: "git log --graph --decorate --all"
-  glo: "git log --oneline"
-  gss: "git status -s"
-  ga: "git add"
-  gm: "git merge"
-  grh: "git reset HEAD"
-  grhh: "git reset HEAD --hard"
-  gclean: "git reset --hard; and git clean -dfx"
-  gwc: "git whatchanged -p --abbrev-commit --pretty=medium"
-  gg: "git gui citool"
-  gga: "git gui citool --amend"
-  gk: "gitk --all --branches"
-  gsts: "git stash show --text"
-  gsta: "git stash"
-  gstp: "git stash pop"
-  gstd: "git stash drop"
-
-  # nix aliases
-  nixdev: nix develop -c fish

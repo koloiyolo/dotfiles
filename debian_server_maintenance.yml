@@ -33,18 +33,6 @@
   roles:
     - docker/monitoring_setup
 
-- name: Setup Fish
-  hosts:
-    - server
-  roles:
-    - fish_setup
-
-- name: Setup Helix
-  hosts:
-    - server
-  roles:
-    - helix_setup
-
 - name: Setup Nix package manager
   hosts:
     - debian

@@ -1,0 +1,11 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ansible_config_validate
+        name: Ansible config validate
+        entry: uv run ansible-config validate
+        language: python
+      - id: ansible_lint
+        name: Ansible lint
+        entry: uv run ansible-lint
+        language: python

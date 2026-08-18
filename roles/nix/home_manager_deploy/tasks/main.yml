@@ -1,12 +1,8 @@
 ---
 - name: Copy home-manager home.nix file to the target directory
   ansible.builtin.template:
-    src: "{{ item }}"
-    dest: "{{ ansible_facts.env.HOME }}/.config/home-manager/{{ item }}"
+    src: "{{ item.src }}"
+    dest: "{{ ansible_facts.env.HOME }}/.config/home-manager/{{ item.mv | default(item.src, true) }}"
     mode: "0655"
-  loop:
-    - home.nix
-    - fish.nix
-    - helix.nix
-    - git.nix
+  loop: "{{ home_manager_deploy_files }}"
   notify: Home-manager configuration rebuild

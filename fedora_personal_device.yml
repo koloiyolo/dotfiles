@@ -13,18 +13,6 @@
   roles:
     - role: fedora/nix_install
 
-- name: Install cargo packages
-  hosts:
-    - all
-  roles:
-    - cargo_maintenance
-
-- name: Install Fish
-  hosts:
-    - all
-  roles:
-    - fish_setup
-
 - name: Ensure Docker is installed
   hosts:
     - fedora
@@ -32,17 +20,11 @@
     - docker/setup
   ignore_unreachable: true
 
-- name: Setup Helix
-  hosts:
-    - all
-  roles:
-    - helix_setup
-
-- name: Setup Zed
-  hosts:
-    - desktop
-  roles:
-    - zed_setup
+# - name: Setup Zed
+#   hosts:
+#     - desktop
+#   roles:
+#     - zed_setup
 
 - name: Setup home-manager
   hosts:

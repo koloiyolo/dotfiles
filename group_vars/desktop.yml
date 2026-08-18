@@ -1,10 +1,11 @@
-home_manager_deploy_packages_desktop:
-  - uv
-  - ruff
-  - rustup
-  - clang-tools
-  - wireshark
-  - ncspot
-  - nil
-  - nixd
-  - nixfmt
+home_manager_deploy_files:
+  - src: base.nix
+  - src: fish.nix
+  - src: git.nix
+  - src: dev_tools.nix
+  - src: helix.nix
+  - src: zed.nix
+  - src: ncspot.nix
+
+  - src: desktop_home.nix
+    mv: home.nix
