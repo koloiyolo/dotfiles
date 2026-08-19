@@ -45,23 +45,31 @@ in
         ];
       };
 
-      lsp.rust_analyzer.initialization_options.check.command = "clippy";
-      lsp.nil.autoArchive = true;
+      lsp.rust-analyzer.initialization_options.check.command = "clippy";
+      lsp.nil.settings.autoArchive = true;
 
       # AI Settings
-      default_model = {
-        effort = "xhigh";
-        enable_thinking = true;
-        provider = "openai-subscribed";
-        model = "gpt-5.6-luna";
-      };
       agent = {
         dock = ai_side;
         sidebar_side = ai_side;
+
+        default_model = {
+          effort = "xhigh";
+          enable_thinking = true;
+          provider = "openai-subscribed";
+          model = "gpt-5.6-luna";
+        };
         tool_permissions.tools.terminal.always_allow = [
           { pattern = ''^git\s+diff(\s|$)''; }
           { pattern = ''^cargo\s+clippy(\s|$)''; }
           { pattern = ''^tree(\s|$)''; }
+        ];
+      };
+      edit_predictions = {
+        provider = "copilot";
+        disabled_globs = [
+          ".env"
+          "config.yaml"
         ];
       };
     };

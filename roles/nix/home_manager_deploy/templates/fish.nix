@@ -5,7 +5,7 @@ let
     eza = "ls";
     cat = "bat -p";
     du = "dust";
-    zed = "zeditor";
+    zed = "zeditor --classic";
 
     # git aliases
     g = "git";
@@ -54,7 +54,7 @@ let
     gstd = "git stash drop";
 
     # nix aliases
-    "nix-develop" = "nix develop -c fish";
+    nix-develop = "nix develop -c fish";
   };
 in
 {

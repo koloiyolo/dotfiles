@@ -13,4 +13,5 @@
 
   # Nix
   pkgs.nil
+  pkgs.nixd
 ]
