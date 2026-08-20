@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   targets.genericLinux = {
     enable = true;
     gpu.enable = true;
   };
+  systemd.user.sessionVariables.PATH = "${config.home.profileDirectory}/bin:$PATH";
 
   imports = [
     ./base.nix
@@ -16,6 +17,5 @@
     pkgs.firefox
     pkgs.vlc
     pkgs.wireshark
-    pkgs.nixfmt
   ];
 }

@@ -6,6 +6,7 @@
   pkgs.rust-analyzer
   pkgs.cargo
   pkgs.rustc
+  pkgs.rustfmt
 
   # Python
   pkgs.ruff
