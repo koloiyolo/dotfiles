@@ -11,5 +11,17 @@
 
   programs.ncspot = {
     enable = true;
+
+    settings = {
+      flip_status_indicators = true;
+      repeat = "playlist";
+      library_tabs = [
+        "playlists"
+        "artists"
+        "albums"
+        "podcasts"
+        "browse"
+      ];
+    };
   };
 }

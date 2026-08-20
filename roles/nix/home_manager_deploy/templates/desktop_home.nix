@@ -14,7 +14,6 @@
   ];
 
   home.packages = [
-    pkgs.firefox
     pkgs.vlc
     pkgs.wireshark
   ];
