@@ -3,13 +3,18 @@
 let
   ide_side = "left";
 
+  nix_lsp_settings = {
+    settings.nil.flake.autoArchive = true;
+    settings.formatting.command = "nixfmt";
+  };
+
   # ----- AI Settings ----- #
   ai_side = "right";
 
   ai_agent_settings = {
     dock = ai_side;
     sidebar_side = ai_side;
-
+    inline_assistant_use_streaming_tools = false;
     default_model = {
       effort = "xhigh";
       enable_thinking = true;
@@ -55,7 +60,7 @@ in
 
     userSettings = {
       autosave.after_delay.milliseconds = 500;
-
+      inlay_hints.enabled = true;
       outline_panel.dock = ide_side;
       git_panel.dock = ide_side;
       project_panel.dock = ide_side;
@@ -68,6 +73,7 @@ in
         metrics = false;
       };
 
+      colorize_brackets = true;
       code_lens = "on";
       lsp_document_colors = "background";
       format_on_save = "on";
@@ -78,12 +84,17 @@ in
           "ty"
           "!basedpyright"
         ];
+        Nix.language_servers = [
+          "nixd"
+          "!nil"
+        ];
       };
       lsp = {
         rust-analyzer.initialization_options.check.command = "clippy";
-        nil.settings.nil.flake.autoArchive = true;
-        nixd.settings.nil.flake.autoArchive = true;
+        # nil = nix_lsp_settings;
+        nixd = nix_lsp_settings;
         covhl.settings = {
+          showHover = false;
           alpha = 0.05;
           colors.covered = "#2ecc71";
         };

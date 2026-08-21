@@ -1,6 +1,9 @@
 { pkgs }:
 
 [
+  pkgs.pre-commit
+  pkgs.devenv
+
   # Rust
   pkgs.clippy
   pkgs.rust-analyzer
@@ -11,8 +14,10 @@
   # Python
   pkgs.ruff
   pkgs.ty
+  pkgs.uv
 
   # Nix
-  pkgs.nil
+  # pkgs.nil
   pkgs.nixd
+  pkgs.nixfmt
 ]

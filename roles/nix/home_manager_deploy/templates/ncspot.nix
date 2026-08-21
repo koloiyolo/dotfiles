@@ -17,8 +17,8 @@
       repeat = "playlist";
       library_tabs = [
         "playlists"
-        "artists"
         "albums"
+        "artists"
         "podcasts"
         "browse"
       ];

@@ -6,16 +6,32 @@
   changed_when: false
   register: home_manager_install_installed
 
+- name: List Nix channels
+  ansible.builtin.command:
+    cmd: nix-channel --list
+  changed_when: false
+  register: home_manager_install_channels
+
+- name: Enable nixpkgs channel
+  ansible.builtin.command:
+    cmd: nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
+  when: "'nixpkgs ' not in home_manager_install_channels.stdout"
+  changed_when: true
+  register: home_manager_install_nixpkgs_channel
+
 - name: Enable home-manager channel
   ansible.builtin.command:
     cmd: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-  when: home_manager_install_installed.rc != 0
+  when: "'home-manager ' not in home_manager_install_channels.stdout"
   changed_when: true
+  register: home_manager_install_home_manager_channel
 
 - name: Update Nix channels
   ansible.builtin.command:
     cmd: nix-channel --update
-  when: home_manager_install_installed.rc != 0
+  when: >-
+    home_manager_install_nixpkgs_channel.changed | default(false)
+    or home_manager_install_home_manager_channel.changed | default(false)
   changed_when: true
 
 - name: Install home-manager
