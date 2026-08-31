@@ -11,6 +11,7 @@
     ./base.nix
     ./zed.nix
     ./ncspot.nix
+    ./space_tools.nix
   ];
 
   home.packages = [

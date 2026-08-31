@@ -6,6 +6,7 @@ home_manager_deploy_files:
   - src: helix.nix
   - src: zed.nix
   - src: ncspot.nix
+  - src: space_tools.nix
 
   - src: desktop_home.nix
     mv: home.nix
