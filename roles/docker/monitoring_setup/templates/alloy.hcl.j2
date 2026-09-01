@@ -24,7 +24,7 @@ prometheus.scrape "unix" {
 prometheus.scrape "cadvisor" {
     targets = [{
         "__address__" = "cadvisor:8080",
-        "nodename" = "{{ inventory_hostname }}",
+        "instance" = "{{ inventory_hostname }}",
     }]
 
     forward_to = [prometheus.remote_write.mimir.receiver]
