@@ -6,8 +6,8 @@
     (pkgs.callPackage (pkgs.fetchFromGitHub {
       owner = "koloiyolo";
       repo = "ccsds_parsers";
-      rev = "b19e315ade91bc0ae1a4b3bc3fe41c65809a1455";
-      hash = "sha256-n7S4PQ7li+Wm5Tm6KUULAPqVytM7TgRMexhCOpb/GaM=";
+      rev = "ae8d276f2bb48984c880452da12ea4e8fd34d1a7";
+      hash = "sha256-c9kgpjyDfmKGVirgH8dOYhtk+zI+VRlYaYtz5XpB6Gg=";
     }) { })
   ];
 }
