@@ -30,8 +30,5 @@ jobs:
       - name: Install community.general in ansible-galaxy
         run: uv run ansible-galaxy collection install -r requirements.yml
 
-      - name: Validate ansible config
-        run: uv run ansible-config validate
-
-      - name: Run ansible-lint
-        run: uv run ansible-lint *.yml
+      - name: Run linters via `pre-commit`
+        run: uvx pre-commit run --all-files
