@@ -4,7 +4,7 @@ _NixOS at home._
 
 My typical modern development setup for Python and Rust.
 
-## Key Tools:
+## Key Tools
 
 - `uv`: A modern Python dependency manager.
 - `ruff`: A blazing-fast formatter and static analyzer for Python and more.
@@ -12,7 +12,8 @@ My typical modern development setup for Python and Rust.
 - `docker`: A containerization engine.
 - `zsh`: A modern shell with good defaults and powerful customization options.
 - `nvim`: A highly configurable and extensible text editor.
-- `zed`: A lightning-fast, code editor built for modern development workflows, with seamless AI integration.
+- `zed`: A lightning-fast, code editor built for modern development workflows,
+  with seamless AI integration.
 - `llama.cpp`: For local LLM models and tweaking.
 
 And many more Rust replacements for common Linux tools...
@@ -33,17 +34,21 @@ uv run ansible-galaxy collection install -r requirements.yml
 
 ### General shell setup
 
-1. Set `ansible_user` variable in `inventory/personal.ini` to your current username.
+1. Set `ansible_user` variable in `inventory/personal.yml` to your current username.
 2. Run ansible playbook:
 
 ```bash
-uv run ansible-playbook -i inventory/personal.ini fedora_personal_device.yml --ask-become-pass -v
+uv run ansible-playbook -i inventory/personal.yml \
+    --ask-become-pass -v \
+    fedora_personal_device.yml
 ```
 
 ### Local LLM deployment via [llama.cpp] / [Podman]
 
 ```bash
-uv run ansible-playbook -i inventory/personal.ini fedora_deploy_llm.yml --ask-become-pass -v
+uv run ansible-playbook -i inventory/personal.ini \
+    --ask-become-pass -v \
+    fedora_deploy_llm.yml
 ```
 
 [llama.cpp]: https://github.com/ggml-org/llama.cpp
@@ -53,24 +58,27 @@ uv run ansible-playbook -i inventory/personal.ini fedora_deploy_llm.yml --ask-be
 
 ### Features
 
- - Automated deployment of SSH keys to the new nodes.
- - Automated deployment of my current development setup and shell configuration.
- - Maintenance playbooks for Debian and Fedora.
- - Orchestrated LGTM monitoring stack deployment.
- - Automated deployment of personal services.
+- Automated deployment of SSH keys to the new nodes.
+- Automated deployment of my current development setup and shell configuration.
+- Maintenance playbooks for Debian and Fedora.
+- Orchestrated LGTM monitoring stack deployment.
+- Automated deployment of personal services.
 
 ### First run
 
 We need to setup the default user first
 
 ```bash
-uv run ansible-playbook -i inventory/homelab.ini debian_server_first_setup.yml -u root -e ansible_user=root  --ask-pass
+uv run ansible-playbook -i inventory/homelab.ini \
+    -u root -e ansible_user=root  --ask-pass \
+    debian_server_first_setup.yml
 ```
 
 ### Run nominal maintenance playbook
 
 ```bash
-uv run ansible-playbook -i inventory/homelab.ini debian_server_maintenance.yml
+uv run ansible-playbook -i inventory/homelab.ini \
+    debian_server_maintenance.yml
 ```
 
 ## Contributing
@@ -85,6 +93,6 @@ uv run ansible-lint *.yml
 
 ## Helpful Resources
 
-* [NixOS on Proxmox LXC]
+- [NixOS on Proxmox LXC]
 
 [NixOS on Proxmox LXC]: https://wiki.nixos.org/wiki/Proxmox_Virtual_Environment#LXC

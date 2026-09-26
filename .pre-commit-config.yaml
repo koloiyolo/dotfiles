@@ -9,3 +9,7 @@ repos:
         name: Ansible lint
         entry: uv run ansible-lint
         language: python
+      - id: mdlint
+        name: Markdown linter
+        entry: uvx mdlint check
+        language: unsupported
