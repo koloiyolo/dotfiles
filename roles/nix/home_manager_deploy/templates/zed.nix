@@ -19,7 +19,7 @@ let
       effort = "xhigh";
       enable_thinking = true;
       provider = "openai-subscribed";
-      model = "gpt-5.6-luna";
+      model = "gpt-6-luna";
     };
     tool_permissions.tools.terminal.always_allow = [
       { pattern = ''^git\s+diff(\s|$)''; }
@@ -40,6 +40,10 @@ let
   dev_tools = import ./dev_tools.nix { inherit pkgs; };
 in
 {
+  home.sessionVariables = {
+    LOCAL_NOTEBOOK_DEV = "1";
+  };
+
   programs.zed-editor = {
     enable = true;
 
@@ -64,6 +68,7 @@ in
       outline_panel.dock = ide_side;
       git_panel.dock = ide_side;
       project_panel.dock = ide_side;
+      minimap.show = "auto";
 
       tasks.enabled = true;
 
@@ -102,6 +107,11 @@ in
 
       agent = ai_agent_settings;
       edit_predictions = ai_edit_predictions_settings;
+
+      feature_flags = {
+        tabular-data-preview = "on";
+        notebooks = "on";
+      };
     };
   };
 }
