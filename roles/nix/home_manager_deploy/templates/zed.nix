@@ -13,7 +13,6 @@ let
 
   ai_agent_settings = {
     dock = ai_side;
-    sidebar_side = ai_side;
     inline_assistant_use_streaming_tools = false;
     default_model = {
       effort = "xhigh";
@@ -25,6 +24,8 @@ let
       { pattern = ''^git\s+diff(\s|$)''; }
       { pattern = ''^cargo\s+clippy(\s|$)''; }
       { pattern = ''^tree(\s|$)''; }
+      { pattern = ''^grep(\s|$)''; }
+      { pattern = ''^cat(\s|$)''; }
     ];
   };
 
@@ -57,12 +58,13 @@ in
       "yaml"
       "markdown"
       "fish"
-      "test-coverage-highlight-lsp"
+      "coverage-lsp"
       "xml"
       "html"
     ];
 
     userSettings = {
+      accessible_mode = true;
       autosave.after_delay.milliseconds = 500;
       inlay_hints.enabled = true;
       outline_panel.dock = ide_side;
@@ -96,12 +98,10 @@ in
       };
       lsp = {
         rust-analyzer.initialization_options.check.command = "clippy";
-        # nil = nix_lsp_settings;
         nixd = nix_lsp_settings;
-        covhl.settings = {
-          showHover = false;
-          alpha = 0.05;
-          colors.covered = "#2ecc71";
+        coverage-lsp.settings = {
+          hit = "00cc0002";
+          miss = "cc000002";
         };
       };
 

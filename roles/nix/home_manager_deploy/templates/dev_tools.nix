@@ -15,6 +15,7 @@
   pkgs.ruff
   pkgs.ty
   pkgs.uv
+  pkgs.poetry
 
   # Nix
   # pkgs.nil
