@@ -35,7 +35,7 @@
 - name: Disable llamacpp containers
   ansible.builtin.systemd:
     name: "{{ item.name }}.service"
-    enabled: true
+    enabled: false
     state: stopped
   become: true
   loop: "{{ podman_llamacpp_deploy_models }}"
