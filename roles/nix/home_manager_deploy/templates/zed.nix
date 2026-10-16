@@ -13,6 +13,7 @@ let
 
   ai_agent_settings = {
     dock = ai_side;
+    threads_sidebar.position = ai_side;
     inline_assistant_use_streaming_tools = false;
     default_model = {
       effort = "xhigh";
@@ -100,8 +101,8 @@ in
         rust-analyzer.initialization_options.check.command = "clippy";
         nixd = nix_lsp_settings;
         coverage-lsp.settings = {
-          hit = "00cc0002";
-          miss = "cc000002";
+          hit = "00dd000a";
+          miss = "dd00000a";
         };
       };
 
