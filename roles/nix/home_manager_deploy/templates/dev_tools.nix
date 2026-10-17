@@ -3,6 +3,7 @@
 [
   pkgs.pre-commit
   pkgs.devenv
+  pkgs.gcc
 
   # Rust
   pkgs.clippy
@@ -18,7 +19,6 @@
   pkgs.poetry
 
   # Nix
-  # pkgs.nil
   pkgs.nixd
   pkgs.nixfmt
 ]

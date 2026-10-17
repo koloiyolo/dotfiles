@@ -7,6 +7,7 @@ home_manager_deploy_files:
   - src: zed.nix
   - src: ncspot.nix
   - src: space_tools.nix
+  - src: gnome.nix
 
   - src: desktop_home.nix
     mv: home.nix
