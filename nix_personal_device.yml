@@ -1,0 +1,7 @@
+---
+- name: Deploy home via home-manager
+  hosts:
+    - all
+  roles:
+    - nix/home_manager_deploy
+  ignore_unreachable: true
