@@ -12,10 +12,12 @@
     ./zed.nix
     ./ncspot.nix
     ./space_tools.nix
+    ./gnome.nix
   ];
 
   home.packages = [
     pkgs.vlc
     pkgs.wireshark
+    pkgs.firefox
   ];
 }
