@@ -8,6 +8,7 @@ home_manager_deploy_files:
   - src: spotify.nix
   - src: space_tools.nix
   - src: gnome.nix
+  - src: ghostty.nix
 
   - src: desktop_home.nix
     mv: home.nix
