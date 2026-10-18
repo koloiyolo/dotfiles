@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.pipewire
+    pkgs.spotifast
   ];
 
   home.sessionVariables = {
