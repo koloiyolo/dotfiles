@@ -6,23 +6,31 @@ My typical modern development setup for Python and Rust.
 
 ## Key Tools
 
-- `uv`: A modern Python dependency manager.
+- [uv]: A modern Python dependency manager.
 - `ruff`: A blazing-fast formatter and static analyzer for Python and more.
 - `cargo`: The Rust development kit.
 - `docker`: A containerization engine.
-- `zsh`: A modern shell with good defaults and powerful customization options.
-- `nvim`: A highly configurable and extensible text editor.
-- `zed`: A lightning-fast, code editor built for modern development workflows,
+- [fish]: Smart and user-friendly command line shell for Linux.
+- [helix]: A highly configurable and extensible TUI text editor.
+- [zed]: A lightning-fast, GUI code editor built for modern development workflows,
   with seamless AI integration.
-- `llama.cpp`: For local LLM models and tweaking.
+- [spotifast] - Blazing fast, lightweight GUI spotify client.
+- [ncspot] - Even faster spotify CLI client.
+- [llama.cpp]: For local LLM models and tweaking.
+- my [GNOME] configuration shared across all of my workspaces
+
+[fish]: https://github.com/fish-shell/fish-shell
+[helix]: https://github.com/helix-editor/helix
+[zed]: https://github.com/zed-industries/zed
+[ncspot]: https://github.com/hrkfdn/ncspot
+[spotifast]: https://github.com/crmne/spotifast
+[GNOME]: https://www.gnome.org/
 
 And many more Rust replacements for common Linux tools...
 
 ## Prequisites
 
-- Fedora Linux
-- `python3.13`
-- `uv`
+- [uv]
 
 ```bash
 uv sync
@@ -37,13 +45,23 @@ uv run ansible-galaxy collection install -r requirements.yml
 1. Set `ansible_user` variable in `inventory/personal.yml` to your current username.
 2. Run ansible playbook:
 
+#### If you use Fedora
+
 ```bash
 uv run ansible-playbook -i inventory/personal.yml \
     --ask-become-pass -v \
     fedora_personal_device.yml
 ```
 
-### Local LLM deployment via [llama.cpp] / [Podman]
+#### If you use NixOS
+
+```bash
+uv run ansible-playbook -i inventory/personal.yml \
+    --ask-become-pass -v \
+    nix_personal_device.yml
+```
+
+### Local LLM deployment via [llama.cpp] / [Podman], Fedora only
 
 ```bash
 uv run ansible-playbook -i inventory/personal.ini \
@@ -96,3 +114,4 @@ uv run ansible-lint *.yml
 - [NixOS on Proxmox LXC]
 
 [NixOS on Proxmox LXC]: https://wiki.nixos.org/wiki/Proxmox_Virtual_Environment#LXC
+[uv]: https://docs.astral.sh/uv/
