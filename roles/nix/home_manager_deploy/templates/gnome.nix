@@ -34,6 +34,11 @@
       button-layout = "appmenu:minimize,maximize,close";
     };
 
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden = true;
+      sort-directories-first = true;
+    };
+
     # ##############################
     #           EXTENSIONS
     # ##############################
@@ -62,7 +67,7 @@
       custom-theme-customize-running-dots = false;
       custom-theme-running-dots-border-color = "rgb(255,255,255)";
       custom-theme-running-dots-color = "rgb(255,255,255)";
-      custom-theme-shrink = true;
+      custom-theme-shrink = false;
       dash-max-icon-size = 48;
       dock-fixed = true;
       dock-position = "LEFT";
@@ -79,12 +84,4 @@
       unity-backlit-items = false;
     };
   };
-
-  # "org/gnome/shell/extensions/just-perfection" = {
-  #   dash-app-running = true;
-  #   panel = true;
-  #   support-notifier-showed-version = 36;
-  #   theme = false;
-  # };
-
 }
