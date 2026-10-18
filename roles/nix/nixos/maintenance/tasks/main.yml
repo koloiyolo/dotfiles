@@ -1,0 +1,14 @@
+---
+- name: Update nix channel lists
+  ansible.builtin.command:
+    cmd: nix-channel --update
+  become: true
+  register: maintenance_nix_channel_update
+  changed_when: (maintenance_nix_channel_update.stdout | trim) is not match('^unpacking [0-9]+ channels\\.\\.\\.$')
+
+- name: Perform system update
+  ansible.builtin.command:
+    cmd: nixos-rebuild switch --upgrade
+  become: true
+  register: maintenance_nix_update
+  changed_when: true

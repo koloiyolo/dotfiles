@@ -1,7 +1,12 @@
 ---
+- name: Nixos maintenance
+  hosts:
+    - nix
+  roles:
+    - nix/nixos/maintenance
+
 - name: Deploy home via home-manager
   hosts:
-    - all
+    - nix
   roles:
     - nix/home_manager_deploy
-  ignore_unreachable: true
