@@ -10,7 +10,7 @@
   imports = [
     ./base.nix
     ./zed.nix
-    ./ncspot.nix
+    ./spotify.nix
     ./space_tools.nix
     ./gnome.nix
   ];
