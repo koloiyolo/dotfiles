@@ -25,4 +25,21 @@
       ];
     };
   };
+
+  # `spotifast` doesn't expose the configuration via home-manager yet
+  # https://search.nixos.org/options?channel=unstable&query=spotifast&source=home_manager&type=options
+  #
+  #   programs.spotifast = {
+  #     enable = true;
+  #
+  #     settings = {
+  #       bitrate = 320;
+  #       normalisation = false;
+  #       audio_cache_mb = 4096;
+  #
+  #       theme = "system";
+  #       player_bar_vis = "spectrum";
+  #       check_for_updates = "false";
+  #     };
+  #   };
 }

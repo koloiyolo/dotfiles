@@ -13,6 +13,7 @@
     ./spotify.nix
     ./space_tools.nix
     ./gnome.nix
+    ./ghostty.nix
   ];
 
   home.packages = [
