@@ -1,0 +1,14 @@
+---
+- name: Ensure modules directory is created
+  ansible.builtin.file:
+    dest: /etc/nixos/modules
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Add docker.nix module
+  ansible.builtin.template:
+    src: docker.nix
+    dest: /etc/nixos/modules/docker.nix
+    mode: "0644"
+  become: true
