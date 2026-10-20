@@ -6,9 +6,11 @@
     mode: "0755"
   become: true
 
-- name: Add docker.nix module
+- name: Add base modules
   ansible.builtin.template:
-    src: docker.nix
-    dest: /etc/nixos/modules/docker.nix
+    src: "{{ item }}"
+    dest: "/etc/nixos/modules/{{ item }}"
     mode: "0644"
   become: true
+  loop:
+    - "docker.nix"
