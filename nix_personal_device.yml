@@ -1,9 +1,9 @@
 ---
-- name: Nixos add docker
+- name: Nixos add base modules
   hosts:
     - nix
   roles:
-    - nix/nixos/docker
+    - nix/nixos/base_modules
 
 - name: Nixos maintenance
   hosts:
