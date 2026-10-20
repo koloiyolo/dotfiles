@@ -86,6 +86,8 @@
     image: grafana/grafana:latest
     state: started
     restart_policy: always
+    env:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
     networks:
       - name: "{{ grafana_setup_network }}"
     volumes:
