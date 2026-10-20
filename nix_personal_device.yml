@@ -1,4 +1,10 @@
 ---
+- name: Nixos add docker
+  hosts:
+    - nix
+  roles:
+    - nix/nixos/docker
+
 - name: Nixos maintenance
   hosts:
     - nix
