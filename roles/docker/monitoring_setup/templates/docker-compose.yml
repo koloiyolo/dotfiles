@@ -1,0 +1,30 @@
+services:
+  cadvisor:
+    container_name: cadvisor
+    image: gcr.io/cadvisor/cadvisor:v0.55.1
+    restart: unless-stopped
+    ports:
+      - 8888:8080
+    volumes:
+      - /etc/machine-id:/etc/machine-id:ro
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+
+  alloy:
+    container_name: alloy
+    image: grafana/alloy:v1.21.0
+    restart: unless-stopped
+    ports:
+      - "12345:12345"
+    volumes:
+      - ./alloy:/etc/alloy
+      - /var/log/journal:/var/log/journal:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: >
+      run --server.http.listen-addr=0.0.0.0:12345
+      /etc/alloy/config.alloy
