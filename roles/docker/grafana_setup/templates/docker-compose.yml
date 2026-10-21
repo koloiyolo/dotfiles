@@ -1,0 +1,33 @@
+services:
+
+  mimir:
+    container_name: mimir
+    image: grafana/mimir:3.2.2
+    restart: unless-stopped
+    ports:
+      - 9009:9009
+    volumes:
+      - ./mimir:/etc/mimir
+    command: -target=all -config.file=/etc/mimir/config.yml
+
+  loki:
+    container_name: loki
+    image: grafana/loki:3.7.9
+    restart: unless-stopped
+    ports:
+      - 3100:3100
+    volumes:
+      - ./loki:/etc/loki
+    command: -config.file=/etc/loki/config.yml
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:13.2.4
+    restart: unless-stopped
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: true
+    ports:
+      - 3000:3000

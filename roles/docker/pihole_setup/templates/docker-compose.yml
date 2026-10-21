@@ -1,0 +1,23 @@
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:2026.07.2
+    restart: always
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 80:80/tcp
+      - 443:443/tcp
+      - 67:67/udp
+    environment:
+      TZ: "Europe/Warsaw"
+      FTLCONF_webserver_api_password: "correct horse battery staple"
+      FTLCONF_dns_listeningMode: "ALL"
+    cap_add:
+      - NET_ADMIN
+      - SYS_TIME
+      - SYS_NICE
+    privileged: true
+    volumes:
+      - ./pihole:/etc/pihole
+      - ./pihole_log:/var/log/pihole
