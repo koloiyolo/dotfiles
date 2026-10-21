@@ -1,5 +1,7 @@
 # Dotfiles
 
+[![CI](https://github.com/koloiyolo/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/koloiyolo/dotfiles/actions/workflows/ci.yml)
+
 _NixOS at home._
 
 My typical modern development setup for Python and Rust.
