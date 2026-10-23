@@ -2,6 +2,7 @@ multitenancy_enabled: false
 
 server:
   http_listen_port: 9009
+  log_level: info
 
 ingester:
   ring:

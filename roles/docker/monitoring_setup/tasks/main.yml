@@ -26,7 +26,7 @@
 
 - name: Copy Alloy config
   ansible.builtin.template:
-    src: templates/alloy.hcl.j2
+    src: templates/alloy.hcl
     dest: monitoring/alloy/config.alloy
     mode: "0644"
     force: true
@@ -35,3 +35,5 @@
 - name: Run monitoring stack
   community.docker.docker_compose_v2:
     project_src: monitoring
+    state: present
+    recreate: always
