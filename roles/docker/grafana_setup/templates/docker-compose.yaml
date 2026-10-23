@@ -1,0 +1,52 @@
+services:
+
+  mimir:
+    container_name: "{{ grafana_setup_mimir_container }}"
+    image: grafana/mimir:3.2.2
+    restart: unless-stopped
+    ports:
+      - 9009:9009
+    volumes:
+      - ./mimir:/etc/mimir:ro
+    command: -target=all -config.file=/etc/mimir/config.yaml
+
+  loki:
+    container_name: "{{ grafana_setup_loki_container }}"
+    image: grafana/loki:3.7.9
+    restart: unless-stopped
+    ports:
+      - 3100:3100
+    volumes:
+      - ./loki:/etc/loki:ro
+    command: -config.file=/etc/loki/config.yaml
+
+  tempo:
+    container_name: "{{ grafana_setup_tempo_container }}"
+    image: grafana/tempo:3.1.1
+    restart: unless-stopped
+    volumes:
+      - ./tempo/config.yaml:/etc/tempo/config.yaml:ro
+    ports:
+      - "3200:3200" # tempo
+      - "4317:4317" # Tempo OTLP GRPC
+      - "4318:4318" # Tempo OTLP HTTP
+    command: -config.file=/etc/tempo/config.yaml
+
+  pyroscope:
+    container_name: "{{ grafana_setup_pyroscope_container }}"
+    image: grafana/pyroscope:2.4.1
+    restart: unless-stopped
+    ports:
+      - 4040:4040
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:13.2.4
+    restart: unless-stopped
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: true
+    ports:
+      - 3000:3000

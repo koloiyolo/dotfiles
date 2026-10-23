@@ -7,52 +7,62 @@
 
 - name: Create config directories
   ansible.builtin.file:
-    dest: "{{ item }}"
+    dest: "{{ grafana_setup_project }}/{{ item }}"
     state: directory
     mode: "0755"
   loop:
-    - "{{ grafana_setup_project }}/grafana_data"
-    - "{{ grafana_setup_project }}/grafana/provisioning/datasources/"
-    - "{{ grafana_setup_project }}/mimir"
-    - "{{ grafana_setup_project }}/loki"
+    - "grafana/provisioning/datasources/"
+    - "mimir"
+    - "loki"
+    - "tempo"
 
 - name: Create Grafana data directory
   ansible.builtin.file:
-    dest: "{{ grafana_setup_project }}/grafana_data"
+    dest: "{{ grafana_setup_project }}/{{ item }}"
     state: directory
     mode: "0755"
     owner: 472
     group: 472
   become: true
+  loop:
+    - grafana_data
 
 - name: Copy Mimir config
   ansible.builtin.template:
-    src: templates/mimir.yml.j2
-    dest: "{{ grafana_setup_project }}/mimir/config.yml"
+    src: templates/mimir.yaml
+    dest: "{{ grafana_setup_project }}/mimir/config.yaml"
     mode: "0644"
     force: true
 
 - name: Copy Loki config
   ansible.builtin.template:
-    src: templates/loki.yml.j2
-    dest: "{{ grafana_setup_project }}/loki/config.yml"
+    src: templates/loki.yaml
+    dest: "{{ grafana_setup_project }}/loki/config.yaml"
+    mode: "0644"
+    force: true
+
+- name: Copy Tempo config
+  ansible.builtin.template:
+    src: templates/tempo.yaml
+    dest: "{{ grafana_setup_project }}/tempo/config.yaml"
     mode: "0644"
     force: true
 
 - name: Setup data sources in Grafana
   ansible.builtin.template:
-    src: templates/datasources/monitoring.yml.j2
-    dest: "{{ grafana_setup_project }}/grafana/provisioning/datasources/monitoring.yml"
+    src: templates/datasources/monitoring.yaml
+    dest: "{{ grafana_setup_project }}/grafana/provisioning/datasources/monitoring.yaml"
     mode: "0644"
     force: true
 
 - name: Copy Grafna LGTM docker compose
   ansible.builtin.template:
-    src: templates/docker-compose.yml
-    dest: "{{ grafana_setup_project }}/docker-compose.yml"
+    src: templates/docker-compose.yaml
+    dest: "{{ grafana_setup_project }}/docker-compose.yaml"
     mode: "0644"
     force: true
 
 - name: Run grafana stack
   community.docker.docker_compose_v2:
     project_src: "{{ grafana_setup_project }}"
+    state: restarted

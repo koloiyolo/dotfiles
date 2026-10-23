@@ -8,3 +8,11 @@ datasources:
   - name: Loki
     type: loki
     url: "http://{{ grafana_setup_loki_container }}:3100"
+
+  - name: Pyroscope
+    type: grafana-pyroscope-datasource
+    url: "http://{{ grafana_setup_pyroscope_container }}:4040"
+
+  - name: Tempo
+    type: tempo
+    url: "http://{{ grafana_setup_tempo_container }}:3200"
