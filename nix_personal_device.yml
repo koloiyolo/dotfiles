@@ -5,6 +5,12 @@
   roles:
     - nix/nixos/base_modules
 
+- name: Nixos add base modules
+  hosts:
+    - desktop
+  roles:
+    - nix/nixos/desktop_modules
+
 - name: Nixos maintenance
   hosts:
     - nix

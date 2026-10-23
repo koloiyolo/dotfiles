@@ -9,7 +9,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    docker-compose
+  environment.systemPackages = [
+    pkgs.docker-compose
   ];
 }
