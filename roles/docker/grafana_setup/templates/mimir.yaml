@@ -17,4 +17,4 @@ blocks_storage:
     sync_dir: /data/tsdb-sync
 
 limits:
-  compactor_blocks_retention_period: {{ grafana_setup_retention_period }}
+  compactor_blocks_retention_period: "{{ grafana_setup_retention_period }}"

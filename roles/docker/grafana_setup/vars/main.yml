@@ -1,3 +1,8 @@
 grafana_setup_project: grafana_provision
 
+grafana_setup_loki_container: loki
+grafana_setup_mimir_container: mimir
+grafana_setup_tempo_container: tempo
+grafana_setup_pyroscope_container: pyroscope
+
 grafana_setup_retention_period: 744h # 31 days
