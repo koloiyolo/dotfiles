@@ -22,9 +22,14 @@ services:
       - "12345:12345"
     volumes:
       - ./alloy:/etc/alloy
+      - /var/run:/var/run:ro
       - /var/log/journal:/var/log/journal:ro
       - /run/log/journal:/run/log/journal:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys/kernel/tracing:/sys/kernel/tracing:rw
     command: >
       run --server.http.listen-addr=0.0.0.0:12345
       /etc/alloy/config.alloy
+    cap_add:
+      - SYSLOG
+    privileged: true

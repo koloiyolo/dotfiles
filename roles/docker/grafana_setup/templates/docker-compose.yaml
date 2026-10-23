@@ -7,6 +7,7 @@ services:
     ports:
       - 9009:9009
     volumes:
+      - ./data/mimir:/data:rw
       - ./mimir:/etc/mimir:ro
     command: -target=all -config.file=/etc/mimir/config.yaml
 
@@ -17,6 +18,7 @@ services:
     ports:
       - 3100:3100
     volumes:
+      - ./data/loki:/tmp/loki:rw
       - ./loki:/etc/loki:ro
     command: -config.file=/etc/loki/config.yaml
 
@@ -25,6 +27,7 @@ services:
     image: grafana/tempo:3.1.1
     restart: unless-stopped
     volumes:
+      - ./data/tempo:/var/lib/tempo:rw
       - ./tempo/config.yaml:/etc/tempo/config.yaml:ro
     ports:
       - "3200:3200" # tempo
@@ -44,7 +47,7 @@ services:
     image: grafana/grafana:13.2.4
     restart: unless-stopped
     volumes:
-      - ./grafana_data:/var/lib/grafana
+      - ./data/grafana:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       GF_AUTH_ANONYMOUS_ENABLED: true

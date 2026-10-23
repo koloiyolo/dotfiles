@@ -30,13 +30,25 @@ prometheus.scrape "cadvisor" {
     forward_to = [prometheus.remote_write.mimir.receiver]
 }
 
+// eBPF profiling collection
+pyroscope.ebpf "default" {
+  forward_to = [pyroscope.write.pyroscope.receiver]
+}
+
 // Loki log collection configuration
 
 // Docker log collection via the Docker socket
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
 loki.source.docker "containers" {
   host       = "unix:///var/run/docker.sock"
-  targets    = []
-
+  targets    = discovery.docker.containers.targets
+  labels = {
+    nodename = "{{ inventory_hostname }}",
+    job      = "docker",
+  }
   forward_to = [loki.write.loki.receiver]
 }
 
@@ -53,6 +65,13 @@ loki.source.journal "default" {
 
 
 // Remote write/push configurations (Exporters)
+
+// Configuration to push profiling data to Grafana Pyroscope
+pyroscope.write "pyroscope" {
+  endpoint {
+    url = "http://{{ hostvars['grafana'].ansible_host }}:4040"
+  }
+}
 
 // Configuration to push Prometheus metrics to Grafana Mimir
 prometheus.remote_write "mimir" {

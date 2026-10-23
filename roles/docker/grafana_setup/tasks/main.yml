@@ -18,14 +18,25 @@
 
 - name: Create Grafana data directory
   ansible.builtin.file:
-    dest: "{{ grafana_setup_project }}/{{ item }}"
+    dest: "{{ grafana_setup_project }}/data/{{ item.path }}"
     state: directory
     mode: "0755"
-    owner: 472
-    group: 472
+    owner: "{{ item.uid }}"
+    group: "{{ item.gid }}"
   become: true
   loop:
-    - grafana_data
+    - path: grafana
+      uid: 472
+      gid: 472
+    - path: loki
+      uid: 10001
+      gid: 10001
+    - path: tempo
+      uid: 10001
+      gid: 10001
+    - path: mimir
+      uid: 10001
+      gid: 10001
 
 - name: Copy Mimir config
   ansible.builtin.template:
@@ -65,4 +76,5 @@
 - name: Run grafana stack
   community.docker.docker_compose_v2:
     project_src: "{{ grafana_setup_project }}"
-    state: restarted
+    state: present
+    recreate: always
