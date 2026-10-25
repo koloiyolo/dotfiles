@@ -1,15 +1,15 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.papirus-icon-theme
-
-    pkgs.gnomeExtensions.dash-to-dock
-    pkgs.gnomeExtensions.just-perfection
-    pkgs.gnomeExtensions.blur-my-shell
-    pkgs.gnomeExtensions.caffeine
-    pkgs.gnomeExtensions.clipboard-history
-    pkgs.gnomeExtensions.system-monitor
+  home.packages = with pkgs; [
+    papirus-icon-theme
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.just-perfection
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.caffeine
+    gnomeExtensions.clipboard-history
+    gnomeExtensions.system-monitor
+    gnomeExtensions.status-tray
   ];
 
   dconf.settings = {
@@ -52,6 +52,7 @@
         clipboard-history.extensionUuid
         system-monitor.extensionUuid
         blur-my-shell.extensionUuid
+        status-tray.extensionUuid
       ];
     };
 
