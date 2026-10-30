@@ -9,6 +9,7 @@ home_manager_deploy_files:
   - src: space_tools.nix
   - src: gnome.nix
   - src: ghostty.nix
+  - src: firefox.nix
 
   - src: desktop_home.nix
     mv: home.nix

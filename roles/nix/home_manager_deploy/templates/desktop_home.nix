@@ -14,11 +14,11 @@
     ./space_tools.nix
     ./gnome.nix
     ./ghostty.nix
+    ./firefox.nix
   ];
 
   home.packages = [
     pkgs.vlc
     pkgs.wireshark
-    pkgs.firefox
   ];
 }
