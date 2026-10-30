@@ -19,5 +19,5 @@ services:
       - SYS_NICE
     privileged: true
     volumes:
-      - ./pihole:/etc/pihole
-      - ./pihole_log:/var/log/pihole
+      - ./data:/etc/pihole
+      - ./log:/var/log/pihole
