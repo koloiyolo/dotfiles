@@ -7,9 +7,12 @@
 
 - name: Ensure Pihole directory exists
   ansible.builtin.file:
-    dest: "{{ pihole_setup_directory }}"
+    dest: "{{ item }}"
     state: directory
     mode: "0755"
+  loop:
+    - "{{ pihole_setup_directory }}"
+    - "{{ pihole_setup_directory }}/data"
 
 - name: Copy Pihole configuration file
   ansible.builtin.template:
@@ -19,11 +22,11 @@
   become: true
   loop:
     - name: data/pihole.toml
-      source: templates/pihole.toml.j2
+      source: pihole.toml.j2
     - name: data/pihole.bak.toml
-      source: templates/pihole.toml.j2
+      source: pihole.toml.j2
     - name: docker-compose.yaml
-      source: templates/docker-compose.yaml
+      source: docker-compose.yaml
 
 - name: Run PiHole container
   community.docker.docker_compose_v2:
