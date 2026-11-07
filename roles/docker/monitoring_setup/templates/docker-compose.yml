@@ -16,7 +16,7 @@ services:
 
   alloy:
     container_name: alloy
-    image: grafana/alloy:v1.21.0
+    image: grafana/alloy:v1.21.3
     restart: unless-stopped
     ports:
       - "12345:12345"
