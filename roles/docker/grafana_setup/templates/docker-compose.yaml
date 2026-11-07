@@ -2,7 +2,7 @@ services:
 
   mimir:
     container_name: "{{ grafana_setup_mimir_container }}"
-    image: grafana/mimir:3.2.2
+    image: grafana/mimir:3.2.4
     restart: unless-stopped
     ports:
       - 9009:9009
