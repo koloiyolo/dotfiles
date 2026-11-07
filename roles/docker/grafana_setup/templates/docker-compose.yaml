@@ -37,7 +37,7 @@ services:
 
   pyroscope:
     container_name: "{{ grafana_setup_pyroscope_container }}"
-    image: grafana/pyroscope:2.4.1
+    image: grafana/pyroscope:2.4.3
     restart: unless-stopped
     ports:
       - 4040:4040
