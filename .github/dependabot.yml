@@ -9,11 +9,19 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+
   - package-ecosystem: docker-compose
+    directories:
+      - "/roles/docker/*/templates"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: nix
     directory: "/"
     schedule:
       interval: weekly
-  - package-ecosystem: nix
+
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
