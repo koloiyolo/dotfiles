@@ -10,6 +10,7 @@
         "ssh-env"
         "ssh-terminfo"
       ];
+      term = "xterm-256color";
     };
   };
 }

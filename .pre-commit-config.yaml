@@ -13,3 +13,4 @@ repos:
         name: Markdown linter
         entry: uvx mdlint check
         language: unsupported
+        types: [markdown]
