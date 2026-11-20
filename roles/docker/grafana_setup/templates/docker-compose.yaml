@@ -13,7 +13,7 @@ services:
 
   loki:
     container_name: "{{ grafana_setup_loki_container }}"
-    image: grafana/loki:3.7.9
+    image: grafana/loki:3.7.10
     restart: unless-stopped
     ports:
       - 3100:3100
