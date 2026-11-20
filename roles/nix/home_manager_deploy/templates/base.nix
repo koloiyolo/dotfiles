@@ -47,6 +47,7 @@
     pkgs.tree
     pkgs.tcpdump
     pkgs.tmux
+    pkgs.htop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -5,6 +5,9 @@
   pkgs.devenv
   pkgs.gcc
 
+  pkgs.just-lsp
+  pkgs.just
+
   # Rust
   pkgs.clippy
   pkgs.rust-analyzer
