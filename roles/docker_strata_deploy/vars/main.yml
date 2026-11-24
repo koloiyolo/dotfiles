@@ -1,0 +1,7 @@
+docker_strata_deploy_directory: "{{ ansible_facts['env']['HOME'] }}/strata"
+docker_strata_deploy_service_port: 8080
+docker_strata_deploy_api_key: "none"
+docker_strata_deploy_vision: "off"
+docker_strata_deploy_context: "64k"
+docker_strata_deploy_model: inkling-2-mini
+docker_strata_deploy_quant: SQ-10

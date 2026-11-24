@@ -1,0 +1,36 @@
+---
+- name: Assert required variables
+  ansible.builtin.assert:
+    that:
+      - docker_strata_deploy_api_key | length > 0
+      - docker_strata_deploy_model | length > 0
+      - docker_strata_deploy_quant | length > 0
+    fail_msg: "docker_strata_deploy_api_key, docker_strata_deploy_model and docker_strata_deploy_quant must be set (e.g. via host_vars or vault)."
+
+- name: Ensure Docker service is running
+  become: true
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Create strata directory
+  ansible.builtin.file:
+    dest: "{{ docker_strata_deploy_directory }}/{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - ""
+    - data
+
+- name: Copy strata compose file
+  ansible.builtin.template:
+    src: templates/compose.yaml
+    dest: "{{ docker_strata_deploy_directory }}/compose.yaml"
+    mode: "0600"
+
+- name: Run strata compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_strata_deploy_directory }}"
+    state: present
+    recreate: auto

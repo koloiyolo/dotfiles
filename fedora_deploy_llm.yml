@@ -9,4 +9,4 @@
   hosts:
     - llm
   roles:
-    - podman_llamacpp_deploy
+    - docker_strata_deploy
