@@ -16,17 +16,37 @@ let
     threads_sidebar.position = ai_side;
     inline_assistant_use_streaming_tools = false;
     default_model = {
-      effort = "xhigh";
+      effort = "high";
       enable_thinking = true;
       provider = "openai-subscribed";
       model = "gpt-6-luna";
     };
+    favorite_models = [
+      {
+        provider = "llama.cpp";
+        model = "inkling-2-mini-sq-10";
+        enable_thinking = false;
+      }
+      {
+        provider = "llama.cpp";
+        model = "inkling-2-mini-sq-20";
+        enable_thinking = false;
+      }
+      {
+        effort = "high";
+        enable_thinking = true;
+        provider = "openai-subscribed";
+        model = "gpt-6-luna";
+      }
+    ];
     tool_permissions.tools.terminal.always_allow = [
       { pattern = ''^git\s+diff(\s|$)''; }
       { pattern = ''^cargo\s+clippy(\s|$)''; }
       { pattern = ''^tree(\s|$)''; }
       { pattern = ''^grep(\s|$)''; }
       { pattern = ''^cat(\s|$)''; }
+      { pattern = ''^find(\s|$)''; }
+      { pattern = ''^ls(\s|$)''; }
     ];
   };
 
