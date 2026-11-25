@@ -11,14 +11,14 @@ My typical modern development setup for Python and Rust.
 - [uv]: A modern Python dependency manager.
 - `ruff`: A blazing-fast formatter and static analyzer for Python and more.
 - `cargo`: The Rust development kit.
-- `docker`: A containerization engine.
+- [Docker]: A containerization engine.
 - [fish]: Smart and user-friendly command line shell for Linux.
 - [helix]: A highly configurable and extensible TUI text editor.
 - [zed]: A lightning-fast, GUI code editor built for modern development workflows,
   with seamless AI integration.
 - [spotifast] - Blazing fast, lightweight GUI spotify client.
 - [ncspot] - Even faster spotify CLI client.
-- [llama.cpp]: For local LLM models and tweaking.
+- [Strata]: For local LLM models and tweaking.
 - my [GNOME] configuration shared across all of my workspaces
 
 [fish]: https://github.com/fish-shell/fish-shell
@@ -63,7 +63,7 @@ uv run ansible-playbook -i inventory/personal.yml \
     nix_personal_device.yml
 ```
 
-### Local LLM deployment via [llama.cpp] / [Podman], Fedora only
+### Local LLM deployment via [Strata] / [Docker], Fedora only
 
 ```bash
 uv run ansible-playbook -i inventory/personal.ini \
@@ -71,8 +71,8 @@ uv run ansible-playbook -i inventory/personal.ini \
     fedora_deploy_llm.yml
 ```
 
-[llama.cpp]: https://github.com/ggml-org/llama.cpp
-[podman]: https://podman.io/
+[Strata]: https://github.com/Niko1221/Strata
+[Docker]: https://www.docker.com/
 
 ## Setup my homelab :D
 
@@ -101,7 +101,7 @@ uv run ansible-playbook -i inventory/homelab.ini \
     debian_server_maintenance.yml
 ```
 
-## Contributing
+## Contributingllama.cpp
 
 Before submitting your merge request, please fix all issues highlighted by:
 
