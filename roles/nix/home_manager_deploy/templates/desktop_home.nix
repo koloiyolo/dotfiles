@@ -20,5 +20,6 @@
   home.packages = [
     pkgs.vlc
     pkgs.wireshark
+    pkgs.gimp
   ];
 }
