@@ -1,27 +1,28 @@
 { pkgs }:
 
+with pkgs;
 [
-  pkgs.pre-commit
-  pkgs.devenv
-  pkgs.gcc
+  pre-commit
+  devenv
+  gcc
 
-  pkgs.just-lsp
-  pkgs.just
+  just-lsp
+  just
 
   # Rust
-  pkgs.clippy
-  pkgs.rust-analyzer
-  pkgs.cargo
-  pkgs.rustc
-  pkgs.rustfmt
+  cargo
+  rustc
+  clippy
+  rust-analyzer
+  rustfmt
 
   # Python
-  pkgs.ruff
-  pkgs.ty
-  pkgs.uv
-  pkgs.poetry
+  ruff
+  ty
+  uv
+  poetry
 
   # Nix
-  pkgs.nixd
-  pkgs.nixfmt
+  nixd
+  nixfmt
 ]
