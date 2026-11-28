@@ -39,15 +39,34 @@ let
         model = "gpt-6-luna";
       }
     ];
-    tool_permissions.tools.terminal.always_allow = [
-      { pattern = ''^git\s+diff(\s|$)''; }
-      { pattern = ''^cargo\s+clippy(\s|$)''; }
-      { pattern = ''^tree(\s|$)''; }
-      { pattern = ''^grep(\s|$)''; }
-      { pattern = ''^cat(\s|$)''; }
-      { pattern = ''^find(\s|$)''; }
-      { pattern = ''^ls(\s|$)''; }
-    ];
+    tool_permissions.tools = {
+      terminal.always_allow = [
+        # Git
+        { pattern = ''^git\s+(diff|status|log|show|branch|rev-parse)\b''; }
+        # Rust
+        { pattern = ''^cargo\s+(clippy|check|test|fmt|metadata|tree)\b''; }
+        # Filesystem inspection
+        { pattern = ''^(tree|ls|head|tail|sort)\b''; }
+        # Text inspection
+        { pattern = ''^(cat|grep)\b''; }
+        # File discovery
+        { pattern = ''^find\s+[^;&|]*$''; }
+      ];
+      "mcp:mcp-server-gitlab:list_issues".default = "allow";
+      "mcp:mcp-server-gitlab:my_issues".default = "allow";
+      "mcp:mcp-server-gitlab:whoami".default = "allow";
+      "mcp:mcp-server-gitlab:mr_discussions".default = "allow";
+      "mcp:mcp-server-gitlab:list_merge_request_changed_files".default = "allow";
+      "mcp:mcp-server-gitlab:create_merge_request_thread".default = "allow";
+      "mcp:mcp-server-gitlab:get_merge_request_file_diff".default = "allow";
+      "mcp:mcp-server-gitlab:get_file_contents".default = "allow";
+      "mcp:mcp-server-gitlab:get_merge_request_diffs".default = "allow";
+      "mcp:mcp-server-gitlab:get_merge_request".default = "allow";
+      "mcp:mcp-server-gitlab:create_draft_note".default = "allow";
+      "mcp:mcp-server-gitlab:delete_draft_note".default = "allow";
+      "mcp:mcp-server-gitlab:list_merge_requests".default = "allow";
+      "mcp:mcp-server-gitlab:discover_tools".default = "allow";
+    };
   };
 
   ai_edit_predictions_settings = {
@@ -82,6 +101,8 @@ in
       "coverage-lsp"
       "xml"
       "html"
+      "mcp-server-github"
+      "mcp-server-gitlab"
     ];
 
     userSettings = {
