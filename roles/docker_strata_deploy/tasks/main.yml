@@ -14,7 +14,7 @@
     state: started
     enabled: true
 
-- name: Create strata directory
+- name: Create strata directories
   ansible.builtin.file:
     dest: "{{ docker_strata_deploy_directory }}/{{ item }}"
     state: directory
